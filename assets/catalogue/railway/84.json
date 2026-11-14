@@ -1,0 +1,793 @@
+{
+  "format": "location-catalogue-preparation",
+  "version": 1,
+  "activation": "disabled",
+  "items": [
+    {
+      "id": "sncf:pn/30000027911",
+      "department": "84",
+      "label": "84 · PN 95 · Beaumont-de-Pertuis",
+      "latitude": 43.730702388335246,
+      "longitude": 5.73608976414013,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027911",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027911",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027912",
+      "department": "84",
+      "label": "84 · PN 96 · Beaumont-de-Pertuis",
+      "latitude": 43.724967365684286,
+      "longitude": 5.732163659190257,
+      "category_code": "SNCF_PN_LOW",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027912",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027912",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17",
+        "low_clearance_difficult": true
+      }
+    },
+    {
+      "id": "sncf:pn/30000027913",
+      "department": "84",
+      "label": "84 · PN 97 · Pertuis",
+      "latitude": 43.66513788893088,
+      "longitude": 5.560762720386416,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027913",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027913",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027915",
+      "department": "84",
+      "label": "84 · PN 99 · Pertuis",
+      "latitude": 43.67544879257061,
+      "longitude": 5.528438109795543,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027915",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027915",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027992",
+      "department": "84",
+      "label": "84 · PN 1 · Cavaillon",
+      "latitude": 43.830132015180546,
+      "longitude": 5.055436760499271,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027992",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027992",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 18"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027993",
+      "department": "84",
+      "label": "84 · PN 19 · Cheval-Blanc",
+      "latitude": 43.79542748389999,
+      "longitude": 5.056822927289016,
+      "category_code": "SNCF_PN_LOW",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027993",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027993",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17",
+        "low_clearance_difficult": true
+      }
+    },
+    {
+      "id": "sncf:pn/30000027994",
+      "department": "84",
+      "label": "84 · PN 20 · Cheval-Blanc",
+      "latitude": 43.791550637579526,
+      "longitude": 5.069925931019766,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027994",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027994",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027995",
+      "department": "84",
+      "label": "84 · PN 21 · Cheval-Blanc",
+      "latitude": 43.78975722897963,
+      "longitude": 5.076647932022881,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027995",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027995",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027996",
+      "department": "84",
+      "label": "84 · PN 22 · Cheval-Blanc",
+      "latitude": 43.785152601167916,
+      "longitude": 5.086869333104558,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027996",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027996",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027997",
+      "department": "84",
+      "label": "84 · PN 23 · Cheval-Blanc",
+      "latitude": 43.78120935427744,
+      "longitude": 5.094318372695324,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027997",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027997",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000027998",
+      "department": "84",
+      "label": "84 · PN 24 · Cheval-Blanc",
+      "latitude": 43.77296090676136,
+      "longitude": 5.109877430665032,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000027998",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000027998",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028000",
+      "department": "84",
+      "label": "84 · PN 25 · Cheval-Blanc",
+      "latitude": 43.76369449660838,
+      "longitude": 5.1273276939576,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028000",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028000",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028001",
+      "department": "84",
+      "label": "84 · PN 26 · Cheval-Blanc",
+      "latitude": 43.75541476573405,
+      "longitude": 5.150116314464896,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028001",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028001",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028002",
+      "department": "84",
+      "label": "84 · PN 27 · Mérindol",
+      "latitude": 43.74621565583484,
+      "longitude": 5.17987858140855,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028002",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028002",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028003",
+      "department": "84",
+      "label": "84 · PN 28 · Mérindol",
+      "latitude": 43.74518100672136,
+      "longitude": 5.19989671702086,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028003",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028003",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028004",
+      "department": "84",
+      "label": "84 · PN 28 bis · Mérindol",
+      "latitude": 43.753562544695185,
+      "longitude": 5.227197130720117,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028004",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028004",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028005",
+      "department": "84",
+      "label": "84 · PN 29 · Puget",
+      "latitude": 43.75471981125225,
+      "longitude": 5.235863434396644,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028005",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028005",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028006",
+      "department": "84",
+      "label": "84 · PN 30 · Puget",
+      "latitude": 43.750779993770735,
+      "longitude": 5.267396656492831,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028006",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028006",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028007",
+      "department": "84",
+      "label": "84 · PN 31 · Lauris",
+      "latitude": 43.7483575016432,
+      "longitude": 5.286803925716637,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028007",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028007",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028008",
+      "department": "84",
+      "label": "84 · PN 32 · Lauris",
+      "latitude": 43.74530625505125,
+      "longitude": 5.306116296243454,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028008",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028008",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028009",
+      "department": "84",
+      "label": "84 · PN 33 · Puyvert",
+      "latitude": 43.73657486197344,
+      "longitude": 5.341444830155044,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028009",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028009",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028010",
+      "department": "84",
+      "label": "84 · PN 34 · Cadenet",
+      "latitude": 43.73409565966213,
+      "longitude": 5.3514594421416195,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028010",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028010",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028011",
+      "department": "84",
+      "label": "84 · PN 35 · Cadenet",
+      "latitude": 43.728693447924464,
+      "longitude": 5.373316315474506,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028011",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028011",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028012",
+      "department": "84",
+      "label": "84 · PN 36 · Cadenet",
+      "latitude": 43.71979212097964,
+      "longitude": 5.391942486716924,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028012",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028012",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028013",
+      "department": "84",
+      "label": "84 · PN 37 · Villelaure",
+      "latitude": 43.7106823346563,
+      "longitude": 5.418697965334134,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028013",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028013",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028014",
+      "department": "84",
+      "label": "84 · PN 38 · Villelaure",
+      "latitude": 43.706835825648994,
+      "longitude": 5.429984217490074,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028014",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028014",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028015",
+      "department": "84",
+      "label": "84 · PN 39 · Pertuis",
+      "latitude": 43.699372556792035,
+      "longitude": 5.449013684548684,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028015",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028015",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028016",
+      "department": "84",
+      "label": "84 · PN 40 · Pertuis",
+      "latitude": 43.694683658653396,
+      "longitude": 5.467438294810017,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028016",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028016",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028017",
+      "department": "84",
+      "label": "84 · PN 41 · Pertuis",
+      "latitude": 43.69128630467041,
+      "longitude": 5.484609558011113,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028017",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028017",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028020",
+      "department": "84",
+      "label": "84 · PN 4 · Morières-lès-Avignon",
+      "latitude": 43.942350454851876,
+      "longitude": 4.908402331627285,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028020",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028020",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028021",
+      "department": "84",
+      "label": "84 · PN 6 · Châteauneuf-de-Gadagne",
+      "latitude": 43.93451178599647,
+      "longitude": 4.947883431778337,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028021",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028021",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 18"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028022",
+      "department": "84",
+      "label": "84 · PN 7 · Châteauneuf-de-Gadagne",
+      "latitude": 43.929203590524956,
+      "longitude": 4.957977760550614,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028022",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028022",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028023",
+      "department": "84",
+      "label": "84 · PN 8 · Le Thor",
+      "latitude": 43.92357336314415,
+      "longitude": 4.96898296861595,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028023",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028023",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 18"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028024",
+      "department": "84",
+      "label": "84 · PN 13 · L'Isle-sur-la-Sorgue",
+      "latitude": 43.90392469108495,
+      "longitude": 5.054312223685405,
+      "category_code": "SNCF_PN_LOW",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028024",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028024",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17",
+        "low_clearance_difficult": true
+      }
+    },
+    {
+      "id": "sncf:pn/30000028025",
+      "department": "84",
+      "label": "84 · PN 14 · L'Isle-sur-la-Sorgue",
+      "latitude": 43.88619270476291,
+      "longitude": 5.056566479507922,
+      "category_code": "SNCF_PN_LOW",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028025",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028025",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17",
+        "low_clearance_difficult": true
+      }
+    },
+    {
+      "id": "sncf:pn/30000028027",
+      "department": "84",
+      "label": "84 · PN 16 · Cavaillon",
+      "latitude": 43.86149853626731,
+      "longitude": 5.052495381096835,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028027",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028027",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028038",
+      "department": "84",
+      "label": "84 · PN 19 · Carpentras",
+      "latitude": 44.051266586324495,
+      "longitude": 5.043295227858203,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028038",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028038",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 19"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028039",
+      "department": "84",
+      "label": "84 · PN 20 · Carpentras",
+      "latitude": 44.03178432138426,
+      "longitude": 5.046658910394354,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028039",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028039",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028040",
+      "department": "84",
+      "label": "84 · PN 21 · Pernes-les-Fontaines",
+      "latitude": 44.02587503906266,
+      "longitude": 5.047107819804576,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028040",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028040",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028041",
+      "department": "84",
+      "label": "84 · PN 22 · Pernes-les-Fontaines",
+      "latitude": 44.02209876084709,
+      "longitude": 5.0473886128798195,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028041",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028041",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028042",
+      "department": "84",
+      "label": "84 · PN 23 · Pernes-les-Fontaines",
+      "latitude": 44.01080374566799,
+      "longitude": 5.048319637069687,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028042",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028042",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028043",
+      "department": "84",
+      "label": "84 · PN 24 · Pernes-les-Fontaines",
+      "latitude": 44.006903621880824,
+      "longitude": 5.048644506245348,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028043",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028043",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 20"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028044",
+      "department": "84",
+      "label": "84 · PN 25 · Pernes-les-Fontaines",
+      "latitude": 44.0011462611516,
+      "longitude": 5.049241350611375,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028044",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028044",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028048",
+      "department": "84",
+      "label": "84 · PN 3 · Entraigues-sur-la-Sorgue",
+      "latitude": 44.00549319401969,
+      "longitude": 4.923286144588868,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028048",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028048",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028050",
+      "department": "84",
+      "label": "84 · PN 4 · Entraigues-sur-la-Sorgue",
+      "latitude": 44.0071237207033,
+      "longitude": 4.928687596915274,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028050",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028050",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000028056",
+      "department": "84",
+      "label": "84 · PN 10 · Monteux",
+      "latitude": 44.03748001237875,
+      "longitude": 4.99575454777316,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000028056",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000028056",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    }
+  ]
+}

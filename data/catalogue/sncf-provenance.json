@@ -1,0 +1,20 @@
+{
+  "data_processed": "2026-02-18T16:29:18+00:00",
+  "source_page": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/",
+  "export_url": "https://ressources.data.sncf.com/api/explore/v2.1/catalog/datasets/liste-des-passages-a-niveau/exports/json?select=id_if%2Clibelle%2Cmnemo%2Cobstacle%2Ccode_ligne%2Cpk%2Cx_wgs84%2Cy_wgs84%2Cdiffr%2Csaco_code_commune%2Csaco_libelle_commune&order_by=id_if",
+  "export_sha256": "d90afd0d9ca85ba485bba0fffa81ff84d612e758f8dde82ecc6847e60893e6ea",
+  "archive_sha256": "a3f0b3f8e0df798f476da3e67a8bcc21975b404cf6c2e8ce0d325a06eee40ae9",
+  "metadata_sha256": "521684e180b1a6265aceff694eaf9146c04c79fa50f92a660b4ec0edea9a4a65",
+  "input_rows": 16878,
+  "output_rows": 14891,
+  "departments": 93,
+  "low_clearance_rows": 1734,
+  "excluded": {
+    "not_primary_public_motor_crossing": 1533,
+    "missing_or_noncontinental_commune": 328,
+    "duplicate_identical_rows": 0,
+    "ambiguous_identifier_rows": 126
+  },
+  "department_assignment": "source_insee_commune",
+  "position_accuracy_per_point": null
+}

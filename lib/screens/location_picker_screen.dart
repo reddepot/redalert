@@ -1,0 +1,1466 @@
+import '../widgets/poi_source_section.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+
+import '../main.dart';
+import '../models/location_alarm.dart';
+import '../models/poi_type.dart';
+import '../theme/poi_style.dart';
+import '../services/native_bridge.dart';
+import '../models/place_result.dart';
+import '../services/coordinate_input.dart';
+import '../services/geocoding_service.dart';
+import '../services/offline_maps.dart';
+import '../widgets/map_scale.dart';
+import '../services/radius_advice.dart';
+import '../models/approach_radius.dart';
+import '../services/unit_controller.dart';
+import '../widgets/placement_target.dart';
+import '../widgets/speed_limit_sign.dart';
+import '../widgets/map_tiles.dart';
+
+class PickedLocation {
+  const PickedLocation({
+    required this.label,
+    required this.latitude,
+    required this.longitude,
+    required this.radiusMeters,
+    required this.repeatDays,
+    this.repeatOnEveryEntry = false,
+    this.poiType = PoiType.other,
+    this.note = '',
+    this.positionStatus = 'to_verify',
+    this.positionAccuracyMeters,
+    this.speedLimitKmh,
+    this.adaptiveRadius = false,
+    this.referenceSpeedKmh,
+    this.roadContext = RoadContext.automatic,
+    this.travelBearingDegrees,
+  });
+
+  final String label;
+  final double latitude;
+  final double longitude;
+  final double radiusMeters;
+  final bool adaptiveRadius;
+  final int? referenceSpeedKmh;
+  final RoadContext roadContext;
+  final double? travelBearingDegrees;
+
+  /// Weekdays the alarm is armed on; empty means once. See [RepeatSchedule].
+  final Set<int> repeatDays;
+  final bool repeatOnEveryEntry;
+  final PoiType poiType;
+  final String note;
+  final String positionStatus;
+  final double? positionAccuracyMeters;
+
+  /// Posted limit typed by the user, or carried over from an import.
+  final int? speedLimitKmh;
+}
+
+/// Full-screen destination picker: search by name, or drag the map under a
+/// fixed centre crosshair. Replaces blind tapping — you can look up "Dhaka
+/// Airport" instead of hunting for it on the map.
+class LocationPickerScreen extends StatefulWidget {
+  const LocationPickerScreen({
+    super.key,
+    required this.initialCenter,
+    this.autofocusSearch = false,
+    this.destinationOnly = false,
+    this.travelSpeed,
+    this.editingAlarm,
+    this.geocodingService,
+    this.tileLayer,
+  });
+
+  final LatLng initialCenter;
+
+  /// Whether to raise the keyboard on arrival.
+  ///
+  /// True when the user tapped the search field on the map, where they have
+  /// already said what they want to do and a second tap to summon the
+  /// keyboard is pure friction. False when they tapped "Add alarm", which
+  /// asks for a place on the map, not a name.
+  final bool autofocusSearch;
+  final bool destinationOnly;
+
+  /// The user's current speed in metres per second, where it is known.
+  /// Decides the starting radius: see [minimumRadiusForSpeed].
+  final double? travelSpeed;
+
+  /// When non-null the picker is editing an existing alarm rather than
+  /// creating a new one. All fields are pre-populated from this value.
+  final LocationAlarm? editingAlarm;
+  final GeocodingService? geocodingService;
+  final Widget? tileLayer;
+
+  @override
+  State<LocationPickerScreen> createState() => _LocationPickerScreenState();
+}
+
+class _LocationPickerScreenState extends State<LocationPickerScreen> {
+  final _mapController = MapController();
+  late final _geocoder = widget.geocodingService ?? GeocodingService();
+  final _searchController = TextEditingController();
+  final _searchFocus = FocusNode();
+
+  /// What the alarm is *for*, in the user's words. Left empty on purpose.
+  ///
+  /// The place name is offered as the hint rather than written into the
+  /// field, so there is nothing to clear before typing "Buy medicine" and
+  /// nothing for a reverse-geocode landing 700ms later to overwrite. Empty
+  /// simply means "call it after the place", which [_confirm] resolves.
+  final _labelController = TextEditingController();
+
+  Set<int> _repeatDays = RepeatSchedule.once;
+  bool _repeatOnEveryEntry = false;
+  PoiType _poiType = PoiType.other;
+  // Kept as text while editing so an empty field stays empty instead of
+  // turning into a numeric zero.
+  String get _speedText => _speedController.text.trim();
+  int? get _speedLimit {
+    final typed = int.tryParse(_speedText.replaceAll(RegExp(r'[^0-9]'), ''));
+    if (typed == null || typed <= 0 || typed > 130) return null;
+    return typed;
+  }
+
+  final _noteController = TextEditingController();
+  final _speedController = TextEditingController();
+  String _positionStatus = 'to_verify';
+  double? _positionAccuracy;
+  bool _locating = false;
+  bool _configuring = false;
+  double _placementZoom = 18;
+  double _nudgeMeters = 5;
+  int _addressSeq = 0;
+  int _placementRevision = 0;
+
+  void _nudge(double bearing) {
+    final target = const Distance().offset(_center, _nudgeMeters, bearing);
+    _selectCoordinate(target, zoom: _placementZoom);
+  }
+
+  void _zoom(double delta) {
+    _mapController.move(
+        _center, (_placementZoom + delta).clamp(mapMinZoom, mapMaxZoom));
+  }
+
+  void _manualPosition() {
+    _placementRevision++;
+    _positionStatus = 'manually_adjusted';
+    _positionAccuracy = null;
+  }
+
+  Future<void> _useCurrentPosition() async {
+    final revision = _placementRevision;
+    final fromSettings = _configuring;
+    setState(() => _locating = true);
+    try {
+      final fix = await NativeBridge().getCurrentLocation();
+      if (!mounted ||
+          revision != _placementRevision ||
+          fromSettings != _configuring) {
+        return;
+      }
+      final age = (fix?['ageMillis'] as num?)?.toDouble();
+      final accuracy = (fix?['accuracy'] as num?)?.toDouble();
+      final lat = (fix?['latitude'] as num?)?.toDouble();
+      final lon = (fix?['longitude'] as num?)?.toDouble();
+      if (age == null ||
+          age < 0 ||
+          age > 15000 ||
+          accuracy == null ||
+          !accuracy.isFinite ||
+          accuracy < 0 ||
+          accuracy > 25 ||
+          lat == null ||
+          lon == null ||
+          !lat.isFinite ||
+          !lon.isFinite ||
+          lat.abs() > 90 ||
+          lon.abs() > 180) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Position trop ancienne ou trop incertaine. Réessayer à l’arrêt, à ciel ouvert, près du lieu.')));
+        return;
+      }
+      _selectCoordinate(LatLng(lat, lon));
+      setState(() {
+        _positionStatus = 'gps_captured';
+        _positionAccuracy = accuracy;
+      });
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Position indisponible. Vérifier la localisation et les autorisations.')));
+      }
+    } finally {
+      if (mounted) setState(() => _locating = false);
+    }
+  }
+
+  MapStyle _mapStyle = MapStyle.standard;
+
+  late LatLng _center = widget.initialCenter;
+  List<PlaceResult> _results = const [];
+  bool _searching = false;
+  bool _showResults = false;
+  bool _searchFailed = false;
+  Timer? _searchDebounce;
+
+  /// Counts searches so a slow answer to an old query cannot overwrite a
+  /// fast answer to the current one.
+  ///
+  /// Two requests can be in flight at once — the debounce makes it unlikely,
+  /// not impossible — and nothing guaranteed they came back in order. Losing
+  /// that race means the results for "kam" replacing the results for
+  /// "kamalapur", which reads as the search being broken.
+  int _searchSeq = 0;
+
+  /// The push transition, while this screen is waiting for it to finish so it
+  /// can raise the keyboard. See [_focusSearchOnceSettled].
+  Animation<double>? _routeAnimation;
+  bool _focusListenerAttached = false;
+
+  /// Set when what has been typed is a coordinate pair rather than a name.
+  ///
+  /// Held separately from [_results] because it is not a search result: it
+  /// needs no server, cannot fail, and is offered instead of a search rather
+  /// than alongside one.
+  LatLng? _coordinateMatch;
+
+  String? _address;
+  bool _resolvingAddress = false;
+  Timer? _addressDebounce;
+
+  late double _radius = _initialRadius();
+  bool _adaptiveRadius = true;
+  int? _referenceSpeedKmh;
+  RoadContext _roadContext = RoadContext.automatic;
+  double? _travelBearing;
+  double get _selectedRadius => _adaptiveRadius
+      ? ApproachRadius.metres(_poiType, _speedLimit, _referenceSpeedKmh,
+          context: _roadContext)
+      : _radius;
+  String? _chosenName;
+
+  /// Whether the starting radius was raised because of [widget.travelSpeed],
+  /// which is worth explaining rather than silently doing.
+  late final double? _speedFloor = minimumRadiusForSpeed(widget.travelSpeed);
+
+  /// Opens wider than the 500m default when the user is moving fast enough
+  /// that 500m could be crossed between two location checks. Defaulting to
+  /// the safe value and explaining it beats showing a hint next to a slider
+  /// already sitting on a number that will not work.
+  double _initialRadius() {
+    const fallback = 500.0;
+    final floor = minimumRadiusForSpeed(widget.travelSpeed);
+    return floor == null || floor < fallback ? fallback : floor;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    final alarm = widget.editingAlarm;
+    if (alarm != null) {
+      _configuring = true;
+      _center = LatLng(alarm.latitude, alarm.longitude);
+      _labelController.text = alarm.label;
+      _radius = alarm.radiusMeters;
+      _roadContext = alarm.roadContext;
+      _travelBearing = alarm.travelBearingDegrees;
+      _adaptiveRadius = alarm.adaptiveRadius;
+      _referenceSpeedKmh = alarm.referenceSpeedKmh;
+      _repeatDays = alarm.repeatDays;
+      _repeatOnEveryEntry = alarm.repeatOnEveryEntry;
+      _chosenName = alarm.label;
+      _poiType = alarm.poiType;
+      _noteController.text = alarm.note;
+      if (alarm.speedLimitKmh != null) {
+        _speedController.text = '${alarm.speedLimitKmh}';
+      }
+      _positionStatus = alarm.positionStatus;
+      _positionAccuracy = alarm.positionAccuracyMeters;
+    }
+    _resolveAddress();
+    // Follows whatever the map screen is showing, rather than asking again.
+    MapStyleStore.load().then((style) {
+      if (mounted) setState(() => _mapStyle = style);
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (widget.autofocusSearch) _focusSearchOnceSettled();
+  }
+
+  /// Raises the keyboard, but not until this screen has finished sliding in.
+  ///
+  /// `autofocus: true` looks like the right answer and is not. It asks for
+  /// focus during the first build, which happens while the push transition is
+  /// still running, and Android's input method will not open for a field that
+  /// takes focus mid-animation — it hands over the cursor and no keyboard.
+  /// Tapping the field again asks the IME directly and it obeys, which is why
+  /// this looked like "the search box needs two taps".
+  ///
+  /// Waiting for the animation to finish and asking then is the whole fix.
+  void _focusSearchOnceSettled() {
+    if (_focusListenerAttached) return;
+
+    final animation = ModalRoute.of(context)?.animation;
+    if (animation == null || animation.isCompleted) {
+      // Already settled — pushed without a transition, or restored.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _searchFocus.requestFocus();
+      });
+      return;
+    }
+
+    _focusListenerAttached = true;
+    _routeAnimation = animation;
+    animation.addStatusListener(_onRouteAnimation);
+  }
+
+  void _onRouteAnimation(AnimationStatus status) {
+    if (status != AnimationStatus.completed) return;
+    _detachFocusListener();
+    if (mounted) _searchFocus.requestFocus();
+  }
+
+  void _detachFocusListener() {
+    if (!_focusListenerAttached) return;
+    _focusListenerAttached = false;
+    _routeAnimation?.removeStatusListener(_onRouteAnimation);
+    _routeAnimation = null;
+  }
+
+  @override
+  void dispose() {
+    _detachFocusListener();
+    _searchDebounce?.cancel();
+    _addressDebounce?.cancel();
+    _searchController.dispose();
+    _searchFocus.dispose();
+    _mapController.dispose();
+    _labelController.dispose();
+    _noteController.dispose();
+    _speedController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged(String query) {
+    _searchDebounce?.cancel();
+    if (query.trim().length < 3) {
+      _searchSeq++;
+      setState(() {
+        _results = const [];
+        _coordinateMatch = null;
+        _searching = false;
+        _showResults = false;
+      });
+      return;
+    }
+
+    // Checked before anything is sent anywhere. A coordinate is already the
+    // answer a search would come back with, so asking a server to confirm it
+    // would be a request that can fail for a question that cannot.
+    final typed = parseCoordinates(query);
+    if (typed != null) {
+      _searchSeq++;
+      setState(() {
+        _coordinateMatch = typed;
+        _results = const [];
+        _searching = false;
+        _searchFailed = false;
+        _showResults = true;
+      });
+      return;
+    }
+
+    setState(() {
+      _coordinateMatch = null;
+      _showResults = true;
+    });
+    _searchDebounce = Timer(const Duration(milliseconds: 600), () async {
+      final seq = ++_searchSeq;
+      setState(() => _searching = true);
+      // Biased towards what the map is showing, which is the best guess
+      // available at what part of the world the user means.
+      final outcome = await _geocoder.search(query, near: _center);
+      if (!mounted || seq != _searchSeq) return;
+      setState(() {
+        _results = outcome.results;
+        _searchFailed = !outcome.reachedService;
+        _searching = false;
+      });
+    });
+  }
+
+  void _selectResult(PlaceResult place) {
+    _searchFocus.unfocus();
+    final target = LatLng(place.latitude, place.longitude);
+    _mapController.move(target, 18);
+    setState(() {
+      _center = target;
+      _manualPosition();
+      _chosenName = place.shortName;
+      _address = place.displayName;
+      _showResults = false;
+      _searchController.text = place.shortName;
+    });
+  }
+
+  /// Moves to a coordinate the user typed.
+  ///
+  /// Unlike [_selectResult] this does not name the place, because a number is
+  /// not a name. It asks for the address instead, which fills one in when
+  /// there is a connection to ask over and leaves the coordinates showing
+  /// when there is not — either way the pin is exactly where it was asked to
+  /// be, which is the whole point of typing one.
+  void _selectCoordinate(LatLng target, {double? zoom}) {
+    _searchFocus.unfocus();
+    if (!_configuring) _mapController.move(target, zoom ?? 18);
+    setState(() {
+      _center = target;
+      _manualPosition();
+      _chosenName = null;
+      _address = null;
+      _showResults = false;
+      _coordinateMatch = null;
+    });
+    _resolveAddress();
+  }
+
+  void _onMapMoved(MapCamera camera, bool hasGesture) {
+    final previousCenter = _center;
+    _center = camera.center;
+    _placementZoom = camera.zoom;
+    if (!hasGesture || previousCenter == _center) return;
+    setState(_manualPosition);
+    // The user dragged the map, so whatever name came from search no longer
+    // describes the pin — fall back to reverse geocoding the new centre.
+    _chosenName = null;
+    _address = null;
+    _addressSeq++;
+    _addressDebounce?.cancel();
+    _addressDebounce =
+        Timer(const Duration(milliseconds: 700), _resolveAddress);
+  }
+
+  /// Names the spot under the pin, when there is anything to name it with.
+  ///
+  /// Skipped outright once the map has established there is no connection.
+  /// Reverse geocoding is a request to a server like any other, and without
+  /// one it spends ten seconds timing out — ten seconds during which the
+  /// panel says "Finding this place…" about a place it is not going to find,
+  /// every single time the map is nudged. Showing the coordinates straight
+  /// away is both faster and truer.
+  Future<void> _resolveAddress() async {
+    final seq = ++_addressSeq;
+    final target = _center;
+    setState(() => _resolvingAddress = true);
+    final address = await _geocoder.reverse(target.latitude, target.longitude);
+    if (!mounted || seq != _addressSeq || target != _center) return;
+    if (address != null && OfflineMaps.offline.value) {
+      OfflineMaps.markOnline();
+    }
+    setState(() {
+      _address = address;
+      _resolvingAddress = false;
+    });
+  }
+
+  /// The pin's position, written out.
+  ///
+  /// Shown where the address would be when there is nothing to show one from,
+  /// which offline is always: reverse geocoding is a request to a server like
+  /// any other. "Dropped pin" said nothing at all; coordinates at least say
+  /// exactly where the alarm is going, and can be read back against any other
+  /// map later.
+  String get _coordinateLabel =>
+      formatCoordinates(_center.latitude, _center.longitude);
+
+  /// What to call this place when the user does not name the task themselves.
+  /// One getter so the hint and the fallback can never drift apart.
+  String get _placeName {
+    final chosen = _chosenName?.trim();
+    if (chosen != null && chosen.isNotEmpty) return chosen;
+    final first = _address?.split(',').first.trim();
+    if (first != null && first.isNotEmpty) return first;
+    return 'Destination';
+  }
+
+  void _confirm() {
+    final typed = _labelController.text.trim();
+    Navigator.of(context).pop(
+      PickedLocation(
+        label: typed.isNotEmpty ? typed : _placeName,
+        latitude: _center.latitude,
+        longitude: _center.longitude,
+        radiusMeters: _selectedRadius,
+        adaptiveRadius: _adaptiveRadius,
+        referenceSpeedKmh: _referenceSpeedKmh,
+        roadContext: _roadContext,
+        travelBearingDegrees: _travelBearing,
+        repeatDays: _repeatDays,
+        repeatOnEveryEntry: _repeatOnEveryEntry,
+        poiType: _poiType,
+        note: _noteController.text.trim(),
+        positionStatus: _positionStatus,
+        positionAccuracyMeters: _positionAccuracy,
+        speedLimitKmh: _speedLimit,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return PopScope<PickedLocation>(
+      canPop: !_configuring,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop && mounted) setState(() => _configuring = false);
+      },
+      child: Scaffold(
+        appBar: _configuring
+            ? AppBar(
+                title: const Text('Régler l’alerte'),
+                leading: BackButton(
+                    onPressed: () => setState(() => _configuring = false)),
+                // Saving lives in the app bar, where it stays reachable with
+                // the keyboard up and the panel scrolled: the footer button it
+                // replaces slid off screen exactly when the form was longest.
+                actions: [
+                  IconButton(
+                    tooltip: 'Enregistrer',
+                    icon: const Icon(Icons.check),
+                    onPressed: _confirm,
+                  ),
+                ],
+              )
+            : null,
+        body: _configuring
+            ? _buildBottomPanel(context)
+            : Stack(
+                children: [
+                  FlutterMap(
+                    mapController: _mapController,
+                    options: MapOptions(
+                      initialCenter: _center,
+                      initialZoom: _placementZoom,
+                      minZoom: mapMinZoom,
+                      maxZoom: mapMaxZoom,
+                      initialRotation: 0,
+                      interactionOptions: InteractionOptions(
+                          flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+                          cursorKeyboardRotationOptions:
+                              CursorKeyboardRotationOptions.disabled(),
+                          keyboardOptions:
+                              const KeyboardOptions(enableQERotating: false)),
+                      onPositionChanged: _onMapMoved,
+                      onTap: (_, _) => _searchFocus.unfocus(),
+                    ),
+                    children: [
+                      widget.tileLayer ??
+                          buildTileLayer(context, style: _mapStyle),
+                      const Positioned(left: 8, bottom: 30, child: MapScale()),
+                      _RadiusCircle(
+                          radius: _selectedRadius, color: scheme.primary),
+                    ],
+                  ),
+                  const IgnorePointer(child: Center(child: PlacementTarget())),
+                  _buildSearchBar(context),
+                  if (_showResults) _buildResultsOverlay(context),
+                  Positioned(
+                      right: 12,
+                      bottom: 36,
+                      child: Material(
+                        color: scheme.surface,
+                        borderRadius: BorderRadius.circular(16),
+                        elevation: 3,
+                        child:
+                            Column(mainAxisSize: MainAxisSize.min, children: [
+                          IconButton(
+                              tooltip: 'Zoom avant',
+                              onPressed: () => _zoom(1),
+                              icon: const Icon(Icons.add)),
+                          IconButton(
+                              tooltip: 'Zoom arrière',
+                              onPressed: () => _zoom(-1),
+                              icon: const Icon(Icons.remove)),
+                          IconButton(
+                              tooltip: 'Placer le centre sur ma position GPS',
+                              onPressed: _locating ? null : _useCurrentPosition,
+                              icon: const Icon(Icons.my_location)),
+                        ]),
+                      )),
+                  Positioned(
+                      left: 8,
+                      bottom: 6,
+                      child: MapAttribution(style: _mapStyle)),
+                ],
+              ),
+        bottomNavigationBar:
+            _configuring ? null : _buildPlacementFooter(context),
+      ),
+    );
+  }
+
+  Widget _buildPlacementFooter(BuildContext context) {
+    final media = MediaQuery.of(context);
+    final keyboard = media.viewInsets.bottom > 0;
+    final available =
+        media.size.height - media.viewInsets.bottom - media.padding.top;
+    return ConstrainedBox(
+      constraints:
+          BoxConstraints(maxHeight: (available * 0.45).clamp(110.0, 400.0)),
+      child: Material(
+          elevation: 8,
+          child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Flexible(
+                      child: SingleChildScrollView(
+                          child:
+                              Column(mainAxisSize: MainAxisSize.min, children: [
+                    Text('Le centre de la croix indique le point exact.',
+                        style: Theme.of(context).textTheme.bodyMedium),
+                    Text(_coordinateLabel,
+                        style: Theme.of(context).textTheme.bodySmall),
+                    if (!keyboard) ...[
+                      Wrap(
+                          alignment: WrapAlignment.center,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            DropdownButton<double>(
+                                value: _nudgeMeters,
+                                underline: const SizedBox.shrink(),
+                                items: [1.0, 5.0, 10.0]
+                                    .map((step) => DropdownMenuItem(
+                                        value: step,
+                                        child: Text('Pas ${step.toInt()} m')))
+                                    .toList(),
+                                onChanged: (step) {
+                                  if (step != null) {
+                                    setState(() => _nudgeMeters = step);
+                                  }
+                                }),
+                            IconButton(
+                                tooltip: 'Déplacer vers l’ouest',
+                                onPressed: () => _nudge(270),
+                                icon: const Icon(Icons.west)),
+                            IconButton(
+                                tooltip: 'Déplacer vers le nord',
+                                onPressed: () => _nudge(0),
+                                icon: const Icon(Icons.north)),
+                            IconButton(
+                                tooltip: 'Déplacer vers le sud',
+                                onPressed: () => _nudge(180),
+                                icon: const Icon(Icons.south)),
+                            IconButton(
+                                tooltip: 'Déplacer vers l’est',
+                                onPressed: () => _nudge(90),
+                                icon: const Icon(Icons.east)),
+                          ]),
+                      const Text(
+                          'Ajustement sur la carte ; la précision GPS peut être moindre.',
+                          textAlign: TextAlign.center),
+                    ],
+                  ]))),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                      width: double.infinity,
+                      child: FilledButton.icon(
+                        onPressed: () {
+                          _searchFocus.unfocus();
+                          if (widget.destinationOnly) {
+                            _confirm();
+                            return;
+                          }
+                          setState(() {
+                            _showResults = false;
+                            _configuring = true;
+                          });
+                        },
+                        icon: const Icon(Icons.check),
+                        label: Text(widget.destinationOnly
+                            ? 'Choisir cette destination'
+                            : 'Utiliser ce centre'),
+                      )),
+                ]),
+              ))),
+    );
+  }
+
+  /// Explains a radius that was widened for the speed the user is travelling
+  /// at, and warns if they then drag it back below what that speed needs.
+  ///
+  /// Silent when standing still or walking, which is most of the time: a note
+  /// that is always on screen is one nobody reads when it matters.
+  Widget _buildSpeedNote(BuildContext context, DistanceUnit unit) {
+    final floor = _speedFloor;
+    final speed = widget.travelSpeed;
+    if (floor == null || speed == null) return const SizedBox.shrink();
+
+    final scheme = Theme.of(context).colorScheme;
+    final tooTight = _selectedRadius < floor;
+    final asText = formatRadiusWithUnit(floor, unit);
+    final speedText = unit == DistanceUnit.miles
+        ? '${milesPerHour(speed)} mph'
+        : '${kilometresPerHour(speed)} km/h';
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(
+            tooTight ? Icons.warning_amber_rounded : Icons.speed,
+            size: 16,
+            color: tooTight ? scheme.error : scheme.onSurfaceVariant,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              tooTight
+                  ? 'Tu roules à $speedText. En dessous de $asText, '
+                      'l’alerte peut manquer le lieu entre deux mesures.'
+                  : 'Tu roules à $speedText : la zone démarre à $asText '
+                      'pour laisser le temps à l’alerte de te prévenir.',
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: tooTight ? scheme.error : scheme.onSurfaceVariant,
+                  ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSearchBar(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Material(
+          elevation: 4,
+          borderRadius: BorderRadius.circular(16),
+          color: Theme.of(context).colorScheme.surface,
+          child: Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              Expanded(
+                child: TextField(
+                  controller: _searchController,
+                  focusNode: _searchFocus,
+                  textInputAction: TextInputAction.search,
+                  onChanged: _onSearchChanged,
+                  onTap: () {
+                    if (_results.isNotEmpty) {
+                      setState(() => _showResults = true);
+                    }
+                  },
+                  decoration: const InputDecoration(
+                    hintText: 'Adresse ou coordonnées',
+                    border: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                    filled: false,
+                    contentPadding: EdgeInsets.symmetric(vertical: 14),
+                  ),
+                ),
+              ),
+              if (_searching)
+                const Padding(
+                  padding: EdgeInsets.only(right: 14),
+                  child: SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  ),
+                )
+              else if (_searchController.text.isNotEmpty)
+                IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    _searchController.clear();
+                    setState(() {
+                      _results = const [];
+                      _showResults = false;
+                    });
+                  },
+                )
+              else
+                const Padding(
+                  padding: EdgeInsets.only(right: 12),
+                  child: Icon(Icons.search),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildResultsOverlay(BuildContext context) {
+    final media = MediaQuery.of(context);
+    // Dynamically calculate available height between top search bar and keyboard/bottom insets
+    final availableHeight = media.size.height -
+        76 -
+        media.viewInsets.bottom -
+        media.padding.top -
+        media.padding.bottom -
+        24;
+    final maxHeight = availableHeight.clamp(140.0, 320.0);
+
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 76, 12, 12),
+        child: Material(
+          elevation: 4,
+          borderRadius: BorderRadius.circular(16),
+          color: Theme.of(context).colorScheme.surface,
+          clipBehavior: Clip.antiAlias,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: maxHeight),
+            child: _buildResultsBody(context),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// What sits inside the results panel: a typed coordinate, a spinner, an
+  /// explanation of why there is nothing, or the results themselves.
+  ///
+  /// Four states written as four returns rather than nested conditionals in
+  /// the widget tree, which is where they were heading.
+  Widget _buildResultsBody(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
+    final typed = _coordinateMatch;
+    if (typed != null) {
+      return ListTile(
+        leading: Icon(Icons.my_location, color: scheme.primary),
+        title: Text(formatCoordinates(typed.latitude, typed.longitude)),
+        subtitle: const Text('Aller à ces coordonnées · sans connexion'),
+        onTap: () => _selectCoordinate(typed),
+      );
+    }
+
+    if (_searching && _results.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.all(24),
+        child: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    if (_results.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.all(24),
+        child: Row(
+          children: [
+            Icon(
+              _searchFailed ? Icons.wifi_off : Icons.search_off,
+              color: scheme.onSurfaceVariant,
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                _searchFailed
+                    ? 'Service de recherche injoignable — chercher par nom '
+                        'demande une connexion. Déplace la carte sur le lieu, '
+                        'ou saisis ses coordonnées : l’alerte, elle, '
+                        'fonctionne sans réseau.'
+                    : 'Aucun lieu trouvé. Essaie une autre recherche.',
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    return ListView.separated(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      itemCount: _results.length,
+      separatorBuilder: (_, _) => const Divider(height: 1),
+      itemBuilder: (context, index) {
+        final place = _results[index];
+        return ListTile(
+          leading: const Icon(Icons.place_outlined),
+          title: Text(
+            place.shortName,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+          subtitle: place.context.isEmpty
+              ? null
+              : Text(
+                  place.context,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+          onTap: () => _selectResult(place),
+        );
+      },
+    );
+  }
+
+  /// Chooses the kind of place, with the same colour and icon the map uses.
+  ///
+  /// A sheet rather than a dropdown: seven entries with a coloured icon each
+  /// read as a legend, and a legend is what the user is learning when they
+  /// correct a catalogue entry.
+  Future<void> _pickPoiType() async {
+    final picked = await showModalBottomSheet<PoiType>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) {
+        final scheme = Theme.of(context).colorScheme;
+        return SafeArea(
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+                child: Text('Type de lieu',
+                    style: Theme.of(context).textTheme.titleLarge),
+              ),
+              for (final type in PoiType.values)
+                ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor:
+                        PoiStyle.of(type).color.withValues(alpha: 0.16),
+                    child: Icon(PoiStyle.of(type).icon,
+                        color: PoiStyle.readable(type, scheme)),
+                  ),
+                  title: Text(type.label),
+                  trailing: type == _poiType
+                      ? Icon(Icons.check, color: scheme.primary)
+                      : null,
+                  onTap: () => Navigator.of(context).pop(type),
+                ),
+            ],
+          ),
+        );
+      },
+    );
+    if (picked == null || !mounted) return;
+    setState(() {
+      _poiType = picked;
+      if (picked != PoiType.other) _repeatOnEveryEntry = true;
+    });
+  }
+
+  Widget _buildBottomPanel(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Material(
+      elevation: 12,
+      color: scheme.surface,
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+      child: SafeArea(
+        top: false,
+        // Scrollable because this panel is no longer a fixed height: the task
+        // field and the repeat row added roughly 140px, and with the keyboard
+        // up on a short screen there is not always that much left. Scrolling
+        // is the difference between a cramped panel and a RenderFlex overflow
+        // across the one control the user came here to press.
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Destination',
+                    style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(height: 8),
+                Wrap(
+                    alignment: WrapAlignment.spaceBetween,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Text('Centre de la zone',
+                          style: Theme.of(context).textTheme.titleMedium),
+                      TextButton.icon(
+                          onPressed: () => setState(() => _configuring = false),
+                          icon: const Icon(Icons.center_focus_strong),
+                          label: const Text('Déplacer')),
+                    ]),
+                Text(_coordinateLabel),
+                Text(
+                    _resolvingAddress
+                        ? 'Recherche de l’adresse…'
+                        : _address ?? 'Adresse non disponible',
+                    maxLines: 2),
+                const SizedBox(height: 14),
+                if (widget.editingAlarm?.provenance != null) ...[
+                  PoiSourceSection(source: widget.editingAlarm!.provenance!),
+                  const SizedBox(height: 14),
+                ],
+                TextField(
+                  controller: _labelController,
+                  textCapitalization: TextCapitalization.sentences,
+                  textInputAction: TextInputAction.done,
+                  // Long enough for a real errand, short enough to stay one
+                  // line on the alarm screen and in the notification.
+                  maxLength: 140,
+                  decoration: InputDecoration(
+                    labelText: 'Libellé du lieu',
+                    // The place name, so leaving it blank is visibly a
+                    // choice with a known result rather than a gap.
+                    hintText:
+                        _resolvingAddress ? 'Acheter du pain…' : _placeName,
+                    prefixIcon: const Icon(Icons.edit_note),
+                    counterText: '',
+                    isDense: true,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                // The type is visible rather than folded away. It decides the
+                // pin colour and the legend, and it is the field being changed
+                // when a catalogue entry is corrected.
+                InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: _pickPoiType,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 18,
+                          backgroundColor: PoiStyle.of(_poiType)
+                              .color
+                              .withValues(alpha: 0.16),
+                          child: Icon(
+                            PoiStyle.of(_poiType).icon,
+                            size: 20,
+                            color: PoiStyle.readable(_poiType, scheme),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('Type de lieu',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                          color: scheme.onSurfaceVariant)),
+                              Text(_poiType.label),
+                            ],
+                          ),
+                        ),
+                        const Icon(Icons.expand_more),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: 36,
+                      height: 36,
+                      child: _speedLimit == null
+                          ? Icon(Icons.speed,
+                              color: scheme.onSurfaceVariant, size: 24)
+                          : SpeedLimitSign(limitKmh: _speedLimit!, size: 32),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: TextField(
+                        controller: _speedController,
+                        keyboardType: TextInputType.number,
+                        textInputAction: TextInputAction.next,
+                        maxLength: 3,
+                        decoration: const InputDecoration(
+                          labelText: 'Vitesse autorisée (km/h)',
+                          hintText: '80, si tu la connais',
+                          counterText: '',
+                          isDense: true,
+                        ),
+                        onChanged: (_) => setState(() {}),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                TextField(
+                  controller: _noteController,
+                  maxLength: 200,
+                  maxLines: 2,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: const InputDecoration(
+                    labelText: 'Repères sur place',
+                    hintText:
+                        'Côté de la route, sens concerné, repère visible…',
+                    counterText: '',
+                  ),
+                ),
+                const SizedBox(height: 4),
+                ExpansionTile(
+                  tilePadding: EdgeInsets.zero,
+                  title: const Text('Position du point'),
+                  subtitle: Text('${switch (_positionStatus) {
+                    'gps_captured' => 'relevée par GPS',
+                    'manually_adjusted' => 'ajustée sur la carte',
+                    _ => 'à vérifier',
+                  }}${_positionAccuracy == null ? '' : ' · incertitude estimée ±${_positionAccuracy!.round()} m'}'),
+                  children: [
+                    const Text(
+                        'Un relevé GPS ne confirme pas la présence du lieu. Corriger uniquement à l’arrêt.'),
+                    TextButton.icon(
+                        onPressed: _locating ? null : _useCurrentPosition,
+                        icon: const Icon(Icons.my_location),
+                        label: Text(_locating
+                            ? 'Recherche…'
+                            : 'Placer sur ma position GPS')),
+                    if (widget.editingAlarm != null)
+                      TextButton.icon(
+                          onPressed: () {
+                            final original = widget.editingAlarm!;
+                            _selectCoordinate(LatLng(
+                                original.originalLatitude ?? original.latitude,
+                                original.originalLongitude ??
+                                    original.longitude));
+                            setState(() {
+                              _positionStatus = 'to_verify';
+                              _positionAccuracy = null;
+                            });
+                          },
+                          icon: const Icon(Icons.restore),
+                          label: const Text('Rétablir la position d’origine')),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12, bottom: 4),
+                  child: Text('Déclenchement',
+                      style: Theme.of(context).textTheme.titleLarge),
+                ),
+                _buildRepeatRow(context),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Mode passage routier'),
+                  subtitle: const Text(
+                      'Voix ou sons courts, puis réarmement après sortie. Désactiver utilise une sonnerie de rappel de destination.'),
+                  value: _repeatOnEveryEntry,
+                  onChanged: (value) =>
+                      setState(() => _repeatOnEveryEntry = value),
+                ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Rayon adapté à la vitesse'),
+                  subtitle: Text(_speedLimit != null
+                      ? 'Anticipation à ${ApproachRadius.expectedSpeed(_poiType, _speedLimit, _referenceSpeedKmh, context: _roadContext)} km/h prévisibles ; limite du point : $_speedLimit km/h.'
+                      : 'Vitesse prévisible : ${ApproachRadius.expectedSpeed(_poiType, _speedLimit, _referenceSpeedKmh, context: _roadContext)} km/h ; limitation inconnue.'),
+                  value: _adaptiveRadius,
+                  onChanged: (v) => setState(() {
+                    _radius = _selectedRadius;
+                    _adaptiveRadius = v;
+                  }),
+                ),
+                if (_adaptiveRadius)
+                  DropdownButtonFormField<RoadContext>(
+                    initialValue: _roadContext,
+                    isExpanded: true,
+                    decoration:
+                        const InputDecoration(labelText: 'Contexte de route'),
+                    items: RoadContext.values
+                        .map((c) =>
+                            DropdownMenuItem(value: c, child: Text(c.label)))
+                        .toList(),
+                    onChanged: (v) => setState(() {
+                      _roadContext = v ?? RoadContext.automatic;
+                      _referenceSpeedKmh = null;
+                    }),
+                  ),
+                const SizedBox(height: 10),
+                DropdownButtonFormField<int>(
+                  initialValue: _travelBearing == null
+                      ? null
+                      : _travelBearing!.round() % 360,
+                  isExpanded: true,
+                  hint: const Text('Inconnue / tous les sens'),
+                  decoration: const InputDecoration(
+                      labelText: 'Direction du véhicule concernée'),
+                  items: [
+                    const DropdownMenuItem<int>(
+                        value: null, child: Text('Inconnue / tous les sens')),
+                    for (final d in {
+                      0,
+                      45,
+                      90,
+                      135,
+                      180,
+                      225,
+                      270,
+                      315,
+                      if (_travelBearing != null) _travelBearing!.round() % 360
+                    })
+                      DropdownMenuItem(
+                          value: d,
+                          child: Text(d % 45 == 0
+                              ? '${const [
+                                  'Nord',
+                                  'Nord-est',
+                                  'Est',
+                                  'Sud-est',
+                                  'Sud',
+                                  'Sud-ouest',
+                                  'Ouest',
+                                  'Nord-ouest'
+                                ][d ~/ 45]} ($d°)'
+                              : '$d°')),
+                  ],
+                  onChanged: (v) =>
+                      setState(() => _travelBearing = v?.toDouble()),
+                ),
+                if (_adaptiveRadius)
+                  DropdownButtonFormField<int>(
+                    key: ValueKey(
+                        "reference-${_poiType.name}-${_roadContext.name}-$_referenceSpeedKmh"),
+                    isExpanded: true,
+                    initialValue: ApproachRadius.expectedSpeed(
+                        _poiType, _speedLimit, _referenceSpeedKmh,
+                        context: _roadContext),
+                    decoration: const InputDecoration(
+                        labelText: 'Vitesse prévisible (référence, km/h)'),
+                    items: [5, 10, 20, 30, 50, 70, 80, 90, 110, 130]
+                        .map((n) =>
+                            DropdownMenuItem(value: n, child: Text('$n km/h')))
+                        .toList(),
+                    onChanged: (v) => setState(() => _referenceSpeedKmh = v),
+                  ),
+                const SizedBox(height: 6),
+                ValueListenableBuilder<DistanceUnit>(
+                  valueListenable: LocReminderApp.unitOf(context),
+                  builder: (context, unit, _) => Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Wrap(
+                        alignment: WrapAlignment.spaceBetween,
+                        spacing: 12,
+                        runSpacing: 4,
+                        children: [
+                          Text(
+                            'Rayon d’alerte',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          Text(
+                            formatRadiusWithUnit(_selectedRadius, unit),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: scheme.primary,
+                                ),
+                          ),
+                        ],
+                      ),
+                      Slider(
+                        value: _selectedRadius,
+                        min: 100,
+                        max: 3000,
+                        divisions: 29,
+                        onChanged: _adaptiveRadius
+                            ? null
+                            : (value) => setState(() => _radius = value),
+                      ),
+                      _buildSpeedNote(context, unit),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// One compact row rather than a grid of chips, because the panel already
+  /// competes with the map for the screen and most alarms are still one-shot.
+  Widget _buildRepeatRow(BuildContext context) => ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.repeat),
+        title: const Text('Répétition'),
+        subtitle: Text(_repeatOnEveryEntry && _repeatDays.isEmpty
+            ? 'Tous les jours, à chaque passage'
+            : RepeatSchedule.describe(_repeatDays)),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: _pickRepeat,
+      );
+
+  Future<void> _pickRepeat() async {
+    _searchFocus.unfocus();
+    final picked = await showRepeatSheet(context, _repeatDays);
+    if (picked == null || !mounted) return;
+    setState(() => _repeatDays = picked);
+  }
+}
+
+/// The radius circle under the picker's fixed crosshair.
+///
+/// It reads the centre from the live [MapCamera] rather than being handed a
+/// coordinate by the screen, because the screen only learns the new centre
+/// through `onPositionChanged` and rebuilding the whole picker on every frame
+/// of a drag to pass it down would be wasteful. Taking it from the camera
+/// here rebuilds one layer instead — and fixes the circle drifting off the
+/// crosshair mid-drag and snapping back once the address lookup settled,
+/// which made the pin look like it was not where the alarm would go.
+class _RadiusCircle extends StatelessWidget {
+  const _RadiusCircle({required this.radius, required this.color});
+
+  final double radius;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleLayer(
+      circles: [
+        CircleMarker(
+          point: MapCamera.of(context).center,
+          radius: radius,
+          useRadiusInMeter: true,
+          color: color.withValues(alpha: 0.12),
+          borderColor: color.withValues(alpha: 0.7),
+          borderStrokeWidth: 2,
+        ),
+      ],
+    );
+  }
+}
+
+/// Asks how often the alarm should ring, returning the weekdays it is armed
+/// on — or null if the user backed out. See [RepeatSchedule] for the encoding.
+Future<Set<int>?> showRepeatSheet(BuildContext context, Set<int> current) {
+  return showModalBottomSheet<Set<int>>(
+    context: context,
+    showDragHandle: true,
+    isScrollControlled: true,
+    builder: (context) => _RepeatSheet(initial: current),
+  );
+}
+
+class _RepeatSheet extends StatefulWidget {
+  const _RepeatSheet({required this.initial});
+
+  final Set<int> initial;
+
+  @override
+  State<_RepeatSheet> createState() => _RepeatSheetState();
+}
+
+class _RepeatSheetState extends State<_RepeatSheet> {
+  // Final because it is only ever mutated in place, never reassigned. The
+  // copy matters though: mutating widget.initial directly would edit the
+  // caller's set, so backing out of the sheet would still have changed it.
+  late final Set<int> _days = widget.initial.toSet();
+
+  void _toggle(int day) {
+    setState(() {
+      if (!_days.remove(day)) _days.add(day);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final isOnce = _days.isEmpty;
+    final isDaily = RepeatSchedule.setEquals(_days, RepeatSchedule.daily);
+
+    return SafeArea(
+      // Seven chips wrap to two rows at large system text sizes, and the
+      // explanation above them grows too. Scrollable so the "Set to …" button
+      // stays reachable on a short screen instead of being pushed off it.
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Répétition',
+                  style: Theme.of(context).textTheme.titleMedium),
+              const SizedBox(height: 4),
+              Text(
+                'Un rappel répété sonne une fois par jour choisi, puis reste '
+                'armé. Un rappel unique se supprime après avoir sonné.',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: scheme.onSurfaceVariant,
+                    ),
+              ),
+              const SizedBox(height: 8),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(Icons.looks_one_outlined, color: scheme.primary),
+                title: const Text('Une fois'),
+                trailing:
+                    isOnce ? Icon(Icons.check, color: scheme.primary) : null,
+                onTap: () => Navigator.of(context).pop(RepeatSchedule.once),
+              ),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Icon(Icons.today_outlined, color: scheme.primary),
+                title: const Text('Chaque jour'),
+                trailing:
+                    isDaily ? Icon(Icons.check, color: scheme.primary) : null,
+                onTap: () => Navigator.of(context).pop(RepeatSchedule.daily),
+              ),
+              const Divider(height: 24),
+              Text(
+                'Ou choisir les jours',
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: scheme.primary,
+                      letterSpacing: 0.8,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+              const SizedBox(height: 10),
+              // Wrap rather than Row: seven chips do not fit across a narrow
+              // phone at a large font scale, and this is exactly the screen
+              // where the system text size is likely to be turned up.
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (var day = 1; day <= 7; day++)
+                    FilterChip(
+                      label: Text(RepeatSchedule.shortName(day)),
+                      selected: _days.contains(day),
+                      onSelected: (_) => _toggle(day),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: FilledButton(
+                  onPressed: () => Navigator.of(context).pop(_days),
+                  // Says what the choice actually means, so clearing every chip
+                  // reading as "Once" is visible before it is committed.
+                  child: Text('Régler sur ${RepeatSchedule.describe(_days)}'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

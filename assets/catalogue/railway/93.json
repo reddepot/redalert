@@ -1,0 +1,75 @@
+{
+  "format": "location-catalogue-preparation",
+  "version": 1,
+  "activation": "disabled",
+  "items": [
+    {
+      "id": "sncf:pn/30000009929",
+      "department": "93",
+      "label": "93 · PN 36 · Bobigny",
+      "latitude": 48.898884097220275,
+      "longitude": 2.4361490118672284,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000009929",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000009929",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 17"
+      }
+    },
+    {
+      "id": "sncf:pn/30000009930",
+      "department": "93",
+      "label": "93 · PN 38 · Noisy-le-Sec",
+      "latitude": 48.89603195513426,
+      "longitude": 2.4705288134815517,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000009930",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000009930",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 19"
+      }
+    },
+    {
+      "id": "sncf:pn/30000013105",
+      "department": "93",
+      "label": "93 · PN 1 · Le Bourget",
+      "latitude": 48.936813121701114,
+      "longitude": 2.4108451137739375,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000013105",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000013105",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 10"
+      }
+    },
+    {
+      "id": "sncf:pn/30000013106",
+      "department": "93",
+      "label": "93 · PN 4 · Le Bourget",
+      "latitude": 48.9323519534576,
+      "longitude": 2.405706186186008,
+      "category_code": "SNCF_PN",
+      "armed": false,
+      "department_assignment": "source_insee_commune",
+      "source": {
+        "name": "SNCF Réseau",
+        "record_id": "30000013106",
+        "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/table/?refine.id_if=30000013106",
+        "snapshot_at": "2026-02-18T16:29:18+00:00",
+        "classification": "Classe 19"
+      }
+    }
+  ]
+}

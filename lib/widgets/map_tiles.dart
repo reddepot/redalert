@@ -1,0 +1,248 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/offline_maps.dart';
+import '../theme/map_palette.dart';
+import 'offline_pack_layer.dart';
+
+const _userAgentPackageName = 'com.zaifears.locreminder';
+const _styleKey = 'map_style';
+
+/// Hard limits on how far the map may be zoomed, applied to every map in the
+/// app.
+///
+/// These are not a styling preference — they are the only thing standing
+/// between a fast pinch and a broken camera. flutter_map turns a pinch into a
+/// zoom with `startZoom + log(scale) / ln2`, and its only guard is
+/// `zoom.clamp(minZoom ?? -infinity, maxZoom ?? infinity)`. Leave the bounds
+/// unset and that clamp is a no-op, so the moment a fling drives the reported
+/// gesture scale to zero, `log(0)` puts negative infinity straight into the
+/// camera: every projection then divides by a zero world size, NaN spreads
+/// through the tile and marker maths, and the map stops responding until the
+/// process dies. With bounds set, the same gesture simply lands on [mapMinZoom].
+///
+/// 3 is a continental view on a phone; 19 is the deepest level the tile
+/// sources actually carry.
+const double mapMinZoom = 3;
+const double mapMaxZoom = 19;
+
+/// A raster tile source.
+///
+/// Every option here renders OpenStreetMap data and is served by a project
+/// that publishes its own stack, so the app stays free software end to end.
+/// Satellite imagery is deliberately absent: every provider of it (Google,
+/// Esri, Bing, Mapbox) is a proprietary service, and depending on one would
+/// undo that for a feature this app does not need.
+enum MapStyle {
+  standard(
+    id: 'standard',
+    label: 'Standard',
+    description: 'L’apparence habituelle d’OpenStreetMap',
+    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attribution: '© OpenStreetMap',
+    invertsForDarkTheme: true,
+    maxNativeZoom: 19,
+  ),
+  humanitarian(
+    id: 'humanitarian',
+    label: 'Humanitaire',
+    description: 'Plus contrasté, libellés plus lisibles',
+    urlTemplate: 'https://tile-a.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+    attribution: '© OpenStreetMap · HOT',
+    invertsForDarkTheme: true,
+    maxNativeZoom: 19,
+  ),
+  topographic(
+    id: 'topographic',
+    label: 'Topographique',
+    description: 'Courbes de niveau et relief',
+    urlTemplate: 'https://tile.opentopomap.org/{z}/{x}/{y}.png',
+    attribution: '© OpenStreetMap · OpenTopoMap (CC-BY-SA)',
+    // Inverting shaded relief turns hills inside out, so leave it alone.
+    invertsForDarkTheme: false,
+    // OpenTopoMap stops at 17. Without saying so, zooming past it asked for
+    // tiles that will never exist and the map went blank rather than blurry.
+    maxNativeZoom: 17,
+  ),
+  cycle(
+    id: 'cyclosm',
+    label: 'Vélo',
+    description: 'Sentiers, pistes et itinéraires cyclables',
+    urlTemplate:
+        'https://a.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png',
+    attribution: '© OpenStreetMap · CyclOSM',
+    invertsForDarkTheme: false,
+    maxNativeZoom: 19,
+  );
+
+  const MapStyle({
+    required this.id,
+    required this.label,
+    required this.description,
+    required this.urlTemplate,
+    required this.attribution,
+    required this.invertsForDarkTheme,
+    required this.maxNativeZoom,
+  });
+
+  final String id;
+  final String label;
+  final String description;
+  final String urlTemplate;
+  final String attribution;
+  final bool invertsForDarkTheme;
+
+  /// The deepest zoom this source actually renders. Past it flutter_map
+  /// scales the last real tile instead of requesting one that 404s.
+  final int maxNativeZoom;
+
+  static MapStyle fromId(String? id) =>
+      values.firstWhere((s) => s.id == id, orElse: () => standard);
+}
+
+/// Remembers the chosen style. Kept device-local like everything else here.
+class MapStyleStore {
+  static Future<MapStyle> load() async {
+    final prefs = await SharedPreferences.getInstance();
+    return MapStyle.fromId(prefs.getString(_styleKey));
+  }
+
+  static Future<void> save(MapStyle style) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_styleKey, style.id);
+  }
+}
+
+/// One tile provider shared by every map in the app.
+///
+/// Built once rather than per rebuild, because it owns the connection pool
+/// and the tile store, and a fresh one per frame would own neither for long.
+/// The store is what makes the map work without a connection: see
+/// [OfflineMaps].
+final TileProvider _tileProvider = NetworkTileProvider(
+  httpClient: OfflineMaps.client,
+  cachingProvider: OfflineMaps.cachingProvider,
+);
+
+/// Shared tile layer, so both map screens stay consistent and neither forgets
+/// the attribution, the User-Agent or the retry behaviour.
+Widget buildTileLayer(BuildContext context,
+        {MapStyle style = MapStyle.standard}) =>
+    OfflinePackLayer(fallback: _buildRasterLayer(context, style: style));
+
+Widget _buildRasterLayer(BuildContext context,
+    {MapStyle style = MapStyle.standard}) {
+  final isDark = Theme.of(context).brightness == Brightness.dark;
+
+  final layer = TileLayer(
+    urlTemplate: style.urlTemplate,
+    userAgentPackageName: _userAgentPackageName,
+    tileProvider: _tileProvider,
+    maxNativeZoom: style.maxNativeZoom,
+    // Debounce updates during fast panning or zooming so intermediate
+    // tiles that the user immediately flies past are not requested.
+    tileUpdateTransformer: TileUpdateTransformers.debounce(
+      const Duration(milliseconds: 150),
+    ),
+    // Without this a tile that failed stays failed for the lifetime of the
+    // map, even once the network is back. Evicting it means panning away and
+    // back is enough to trigger a fresh attempt.
+    evictErrorTileStrategy: EvictErrorTileStrategy.notVisibleRespectMargin,
+    // A failed tile is the app's only evidence that the phone has no working
+    // connection, and the cue to start serving expired tiles from disk
+    // instead of drawing holes.
+    errorTileCallback: (_, error, _) => OfflineMaps.reportTileError(error),
+  );
+
+  // Keep one stable widget path and one filter for the whole layer.
+  return ColorFiltered(
+      colorFilter: isDark && style.invertsForDarkTheme
+          ? MapPalette.rasterNight
+          : MapPalette.rasterDay,
+      child: layer);
+}
+
+/// OpenStreetMap's licence requires visible attribution wherever tiles show,
+/// and the alternative styles each want their own credit alongside it.
+///
+/// Deliberately a plain overlay rather than flutter_map's own attribution
+/// layer: both map screens have a panel pinned to the bottom of the stack,
+/// which would sit on top of the built-in bottom-right attribution and hide
+/// it entirely. The caller positions this where it stays visible.
+class MapAttribution extends StatelessWidget {
+  const MapAttribution({super.key, this.style = MapStyle.standard});
+
+  final MapStyle style;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: scheme.surface.withValues(alpha: 0.8),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+        child: Text(
+          style.attribution,
+          style: TextStyle(fontSize: 10, color: scheme.onSurfaceVariant),
+        ),
+      ),
+    );
+  }
+}
+
+/// Lets the user pick a style, and explains why satellite is not on offer:
+/// people do ask, and "we left it out on purpose" reads better than silence.
+Future<MapStyle?> showMapStyleSheet(BuildContext context, MapStyle current) {
+  return showModalBottomSheet<MapStyle>(
+    context: context,
+    showDragHandle: true,
+    builder: (context) {
+      final scheme = Theme.of(context).colorScheme;
+      return SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+              child: Row(
+                children: [
+                  Text('Style de carte',
+                      style: Theme.of(context).textTheme.titleMedium),
+                ],
+              ),
+            ),
+            // A plain tile with a tick rather than RadioListTile, whose
+            // groupValue/onChanged pair is deprecated in favour of a
+            // RadioGroup ancestor. A sheet that closes on tap does not need
+            // the extra widget to express one choice out of four.
+            for (final style in MapStyle.values)
+              ListTile(
+                selected: style == current,
+                title: Text(style.label),
+                subtitle: Text(style.description),
+                trailing: style == current
+                    ? Icon(Icons.check, color: scheme.primary)
+                    : null,
+                onTap: () => Navigator.of(context).pop(style),
+              ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+              child: Text(
+                'Pas de vue satellite : tous les fournisseurs d’imagerie '
+                'satellite sont des services fermés, et LocReminder reste sur '
+                'des données ouvertes pour marcher sans compte ni pistage.',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: scheme.onSurfaceVariant,
+                    ),
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}

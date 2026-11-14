@@ -1,0 +1,432 @@
+{
+  "reference_sha256": "c27f1eba0b4f137d52883f1a17ffc1b24635c0b0cf56fa96164644676adfbbd5",
+  "railway_index_sha256": "04dad9265a4dab8c572977aa7ced6b9a2fb28c00f4b3d4e53d4a467a26f24e9a",
+  "method": "nearest_public_SNCF_reference_haversine",
+  "buckets_are_disjoint": true,
+  "radar_crossings": 69,
+  "railway_points": 14891,
+  "nearest_distance_buckets": {
+    "beyond_100m": 14,
+    "within_100m": 10,
+    "within_25m": 9,
+    "within_50m": 36
+  },
+  "automatic_merge": false,
+  "interpretation": "A railway crossing and a camera monitoring it remain different alerts. Proximity alone does not establish identity.",
+  "pairs": [
+    {
+      "radar_id": "mi:FE307501",
+      "crossing_id": "sncf:pn/30000025533",
+      "metres": 77.47,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE307502",
+      "crossing_id": "sncf:pn/30000025533",
+      "metres": 107.81,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE313501",
+      "crossing_id": "sncf:pn/30000027916",
+      "metres": 43.05,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE313502",
+      "crossing_id": "sncf:pn/30000027916",
+      "metres": 44.32,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE318501",
+      "crossing_id": "sncf:pn/30000021833",
+      "metres": 40.2,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE319501",
+      "crossing_id": "sncf:pn/30000021120",
+      "metres": 33.97,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE319502",
+      "crossing_id": "sncf:pn/30000021120",
+      "metres": 19.78,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE327501",
+      "crossing_id": "sncf:pn/30000016284",
+      "metres": 24.8,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE327502",
+      "crossing_id": "sncf:pn/30000016284",
+      "metres": 25.06,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE331501",
+      "crossing_id": "sncf:pn/30000022744",
+      "metres": 31.2,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE331502",
+      "crossing_id": "sncf:pn/30000022744",
+      "metres": 41.37,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE334503",
+      "crossing_id": "sncf:pn/30000028881",
+      "metres": 27.46,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE334504",
+      "crossing_id": "sncf:pn/30000028881",
+      "metres": 36.04,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE334505",
+      "crossing_id": "sncf:pn/30000028874",
+      "metres": 43.62,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE334506",
+      "crossing_id": "sncf:pn/30000028874",
+      "metres": 27.7,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE334509",
+      "crossing_id": "sncf:pn/30000028253",
+      "metres": 374.38,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE334510",
+      "crossing_id": "sncf:pn/30000028253",
+      "metres": 339.77,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE337501",
+      "crossing_id": "sncf:pn/30000021490",
+      "metres": 13.84,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE337502",
+      "crossing_id": "sncf:pn/30000021490",
+      "metres": 11.78,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE338501",
+      "crossing_id": "sncf:pn/30000025679",
+      "metres": 67.44,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE338502",
+      "crossing_id": "sncf:pn/30000025679",
+      "metres": 34.41,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE340501",
+      "crossing_id": "sncf:pn/30000020566",
+      "metres": 30.41,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE343501",
+      "crossing_id": "sncf:pn/30000026898",
+      "metres": 54.14,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE343502",
+      "crossing_id": "sncf:pn/30000026898",
+      "metres": 31.15,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE344501",
+      "crossing_id": "sncf:pn/30000018414",
+      "metres": 22.94,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE344503",
+      "crossing_id": "sncf:pn/30000018553",
+      "metres": 117.75,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE344505",
+      "crossing_id": "sncf:pn/30000018414",
+      "metres": 26.14,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE344506",
+      "crossing_id": "sncf:pn/30000018553",
+      "metres": 97.18,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE345601",
+      "crossing_id": "sncf:pn/30000023940",
+      "metres": 20.28,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE345602",
+      "crossing_id": "sncf:pn/30000023940",
+      "metres": 27.0,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE347504",
+      "crossing_id": "sncf:pn/30000020168",
+      "metres": 18.52,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE347603",
+      "crossing_id": "sncf:pn/30000020168",
+      "metres": 57.6,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE359501",
+      "crossing_id": "sncf:pn/30000013868",
+      "metres": 113.43,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE359502",
+      "crossing_id": "sncf:pn/30000013868",
+      "metres": 114.05,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE359504",
+      "crossing_id": "sncf:pn/30000013695",
+      "metres": 113.47,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE359509",
+      "crossing_id": "sncf:pn/30000013376",
+      "metres": 635.46,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE359510",
+      "crossing_id": "sncf:pn/30000013376",
+      "metres": 706.04,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE359511",
+      "crossing_id": "sncf:pn/30000013582",
+      "metres": 49.27,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE359512",
+      "crossing_id": "sncf:pn/30000013582",
+      "metres": 55.99,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE360501",
+      "crossing_id": "sncf:pn/30000012679",
+      "metres": 870.58,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE360502",
+      "crossing_id": "sncf:pn/30000012679",
+      "metres": 873.3,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE362503",
+      "crossing_id": "sncf:pn/30000013483",
+      "metres": 47.2,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE362504",
+      "crossing_id": "sncf:pn/30000013483",
+      "metres": 33.87,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE368601",
+      "crossing_id": "sncf:pn/30000012326",
+      "metres": 45.28,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE368602",
+      "crossing_id": "sncf:pn/30000012325",
+      "metres": 71.25,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE369501",
+      "crossing_id": "sncf:pn/30000025393",
+      "metres": 45.07,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE369502",
+      "crossing_id": "sncf:pn/30000025393",
+      "metres": 46.68,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE369503",
+      "crossing_id": "sncf:pn/30000025496",
+      "metres": 50.5,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE369504",
+      "crossing_id": "sncf:pn/30000025496",
+      "metres": 43.49,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE371501",
+      "crossing_id": "sncf:pn/30000024342",
+      "metres": 49.22,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE371502",
+      "crossing_id": "sncf:pn/30000024342",
+      "metres": 50.86,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE372501",
+      "crossing_id": "sncf:pn/30000018766",
+      "metres": 49.1,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE372502",
+      "crossing_id": "sncf:pn/30000018766",
+      "metres": 39.87,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE372503",
+      "crossing_id": "sncf:pn/30000017428",
+      "metres": 96.87,
+      "bucket": "within_100m"
+    },
+    {
+      "radar_id": "mi:FE372504",
+      "crossing_id": "sncf:pn/30000017428",
+      "metres": 101.96,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE373501",
+      "crossing_id": "sncf:pn/30000027593",
+      "metres": 166.13,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE373502",
+      "crossing_id": "sncf:pn/30000027593",
+      "metres": 166.28,
+      "bucket": "beyond_100m"
+    },
+    {
+      "radar_id": "mi:FE377501",
+      "crossing_id": "sncf:pn/30000023927",
+      "metres": 38.87,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE377502",
+      "crossing_id": "sncf:pn/30000023927",
+      "metres": 44.42,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE387501",
+      "crossing_id": "sncf:pn/30000021033",
+      "metres": 32.89,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE387502",
+      "crossing_id": "sncf:pn/30000021033",
+      "metres": 24.51,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE389501",
+      "crossing_id": "sncf:pn/30000023992",
+      "metres": 44.16,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE389502",
+      "crossing_id": "sncf:pn/30000023992",
+      "metres": 36.63,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE391501",
+      "crossing_id": "sncf:pn/30000023723",
+      "metres": 43.76,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE391502",
+      "crossing_id": "sncf:pn/30000023723",
+      "metres": 16.79,
+      "bucket": "within_25m"
+    },
+    {
+      "radar_id": "mi:FE391503",
+      "crossing_id": "sncf:pn/30000016445",
+      "metres": 35.54,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE391504",
+      "crossing_id": "sncf:pn/30000016445",
+      "metres": 39.95,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE395501",
+      "crossing_id": "sncf:pn/30000012937",
+      "metres": 44.36,
+      "bucket": "within_50m"
+    },
+    {
+      "radar_id": "mi:FE395502",
+      "crossing_id": "sncf:pn/30000012937",
+      "metres": 39.53,
+      "bucket": "within_50m"
+    }
+  ]
+}

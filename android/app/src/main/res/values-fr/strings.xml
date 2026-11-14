@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- GENERATED FILE - DO NOT EDIT. Source: locale/fr.yaml -->
+<resources>
+    <string name="alarm_arrived_default">Tu es arrivé !</string>
+    <string name="alarm_arrived_message">Tu approches de\n%1$s</string>
+    <string name="alarm_stop_button">Arrêter l’alarme</string>
+    <string name="alarm_default_destination">ta destination</string>
+    <string name="alarm_label_joiner"> et </string>
+    <string name="alarm_notification_title">Tu approches de %1$s</string>
+    <string name="alarm_notification_body">Touche pour ouvrir l’alarme, ou arrête-la ci-dessous.</string>
+    <string name="channel_alarm_name">Alertes de lieu</string>
+    <string name="channel_alarm_description">Te prévient quand tu arrives près d’un lieu enregistré</string>
+    <string name="channel_watch_name">Surveillance des lieux</string>
+    <string name="channel_watch_description">S’affiche pendant que RedAlert surveille tes lieux</string>
+    <string name="notify_arrived_body">Touche pour ouvrir ton alarme.</string>
+    <string name="notify_stopped_title">Ton alarme ne surveille plus</string>
+    <string name="notify_stopped_body">Touche pour rouvrir RedAlert et la réarmer.</string>
+    <string name="notify_location_off_title">Localisation coupée — l’alarme ne peut pas sonner</string>
+    <string name="notify_location_off_body">Touche pour activer la localisation.</string>
+    <string name="watch_title_active">Surveillance de tes lieux</string>
+    <string name="watch_title_inactive">Surveillance arrêtée</string>
+    <string name="watch_title_dormant">Rien à surveiller aujourd’hui</string>
+    <string name="watch_dormant_body">Tes alarmes sont prévues d’autres jours. La surveillance reprend d’elle-même.</string>
+    <string name="watch_location_off">Active la localisation — sans elle, l’alarme ne peut pas sonner</string>
+    <string name="watch_waiting_fix">Économie de batterie · position en attente</string>
+    <string name="watch_stale_fix">Position à actualiser · étapes de passage suspendues</string>
+    <string name="watch_distance_km">%1$s km de %2$s</string>
+    <string name="watch_distance_m">%1$s m de %2$s</string>
+    <string name="watch_distance_mi">%1$s mi de %2$s</string>
+    <string name="watch_distance_ft">%1$s ft de %2$s</string>
+    <plurals name="watch_armed">
+        <item quantity="one">%d alerte armée</item>
+        <item quantity="other">%d alertes armées</item>
+    </plurals>
+    <string name="test_alarm_label">Alarme de test</string>
+    <string name="custom_sound_name">Son personnalisé</string>
+</resources>

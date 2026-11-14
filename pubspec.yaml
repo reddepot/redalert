@@ -1,0 +1,46 @@
+name: locreminder
+description: "Reminds you at the right place. A location-based alarm app built with Flutter."
+publish_to: 'none'
+
+version: 2.1.1-catalogue.18+58
+
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Material's own strings (text-field context menus, dialogs) are not in
+  # locale/*.yaml and do not exist for French without this delegate: without
+  # it, a French phone renders every TextField with no MaterialLocalizations
+  # and throws. The app's own strings stay on the S delegate.
+  flutter_localizations:
+    sdk: flutter
+
+  flutter_map: ^8.3.1
+  flutter_map_vector_tiles: ^2.11.0
+  latlong2: ^0.10.1
+  permission_handler: ^11.3.1
+  shared_preferences: ^2.3.2
+  http: ^1.6.0
+  xml: ^7.1.0
+  url_launcher: ^6.3.2
+  package_info_plus: ^10.2.1
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+# The launcher icons under android/app/src/main/res are hand-authored and
+# committed directly. flutter_launcher_icons is deliberately NOT used: running
+# it would regenerate and overwrite that artwork on every build.
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/catalogue/
+    - assets/catalogue/railway/
+    - assets/maps/
+    - assets/voice/fr/

@@ -1,0 +1,224 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../services/app_version.dart';
+
+class AboutScreen extends StatefulWidget {
+  const AboutScreen({super.key});
+
+  @override
+  State<AboutScreen> createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen> {
+  String? _version;
+
+  @override
+  void initState() {
+    super.initState();
+    AppVersion.get().then((value) {
+      if (mounted) setState(() => _version = value);
+    });
+  }
+
+  static final _github = Uri.parse('https://github.com/zaifears/locreminder');
+  static final _coffee = Uri.parse('https://shahoriar.bd/thanks');
+  static final _palestine =
+      Uri.parse('https://revolutionarypapers.org/journal/free-palestine/');
+
+  /// Opens a link, saying so when it cannot be opened.
+  ///
+  /// `launchUrl` reports "no" two different ways — returning false, and
+  /// throwing when nothing on the device claims the scheme at all. Only the
+  /// first was handled, so on a phone with no browser set up a tap did
+  /// nothing and explained nothing.
+  Future<void> _open(BuildContext context, Uri uri) async {
+    final messenger = ScaffoldMessenger.of(context);
+    bool launched;
+    try {
+      launched = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (_) {
+      launched = false;
+    }
+    if (!launched) {
+      messenger.showSnackBar(
+        SnackBar(content: Text('Impossible d’ouvrir $uri')),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('À propos')),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          Center(
+            child: Column(
+              children: [
+                // Solid Signal Blue with a white pin, standing in for the
+                // launcher icon: this is the one place in the app that is
+                // simply the product's mark, so it carries the accent at full
+                // strength rather than the pale container tone.
+                Container(
+                  width: 96,
+                  height: 96,
+                  decoration: BoxDecoration(
+                    color: scheme.primary,
+                    borderRadius: BorderRadius.circular(28),
+                    boxShadow: [
+                      BoxShadow(
+                        color: scheme.primary.withValues(alpha: 0.32),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: Icon(
+                    Icons.location_on,
+                    size: 52,
+                    color: scheme.onPrimary,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text('RedAlert', style: Theme.of(context).textTheme.headlineSmall),
+                const SizedBox(height: 4),
+                Text(
+                  _version == null ? 'Version…' : 'Version $_version',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: scheme.onSurfaceVariant,
+                      ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 28),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(18),
+              child: Text(
+                'Une alerte liée à un lieu, qui se déclenche quand tu arrives '
+                'quelque part : tu peux dormir pendant le trajet sans rater '
+                'ton arrêt, ou te rappeler une course à faire dès que tu '
+                'passes assez près.\n\n'
+                'Elle continue de surveiller en arrière-plan, donc l’alerte '
+                'sonne même quand l’appli est fermée, et elle s’appuie sur '
+                'OpenStreetMap pour les cartes : aucune clé d’API ni compte '
+                'n’est nécessaire.\n\n'
+                'Logiciel libre, sans services Google, sans publicité et sans '
+                'pistage. Tes lieux restent sur ton téléphone.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.5),
+              ),
+            ),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            'DÉVELOPPEUR',
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: scheme.primary,
+                  letterSpacing: 0.8,
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Card(
+            child: Column(
+              children: [
+                ListTile(
+                  leading: const CircleAvatar(
+                    radius: 24,
+                    backgroundImage: AssetImage('assets/images/shahoriar.png'),
+                  ),
+                  title: const Text('Shahoriar Hossain'),
+                  subtitle: const Text('zaifears'),
+                ),
+                const Divider(height: 1),
+                // GitHub only. The personal site and email address were
+                // here too; issues are a better route for anything about the
+                // app, and the two are no longer published in the app itself.
+                ListTile(
+                  iconColor: scheme.primary,
+                  leading: const Icon(Icons.code),
+                  title: const Text('GitHub'),
+                  subtitle: const Text('github.com/zaifears/locreminder'),
+                  trailing: const Icon(Icons.open_in_new, size: 18),
+                  onTap: () => _open(context, _github),
+                ),
+                const Divider(height: 1),
+                ListTile(
+                  iconColor: scheme.primary,
+                  leading: const Icon(Icons.coffee),
+                  title: const Text('Offre-moi un café'),
+                  subtitle: const Text('shahoriar.bd/thanks'),
+                  trailing: const Icon(Icons.open_in_new, size: 18),
+                  onTap: () => _open(context, _coffee),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 24),
+          Text(
+            'CRÉDITS',
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: scheme.primary,
+                  letterSpacing: 0.8,
+                  fontWeight: FontWeight.w700,
+                ),
+          ),
+          const SizedBox(height: 8),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(18),
+              child: Text(
+                'Données cartographiques et recherche © les contributeurs '
+                'd’OpenStreetMap, disponibles sous l’Open Database License.\n\n'
+                'RedAlert est dérivé de LocReminder, dont le code source est '
+                'libre sous licence MIT © 2026 Shahoriar Hossain. Le nom, '
+                'l’icône et le logo RedAlert sont propres à cette version.',
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: scheme.onSurfaceVariant,
+                      height: 1.5,
+                    ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 28),
+          _buildPalestineBanner(context),
+        ],
+      ),
+    );
+  }
+
+  /// The artwork is dark ink on a transparent background, so on a dark theme
+  /// it would all but vanish against the surface behind it. Painting a light
+  /// card underneath keeps it legible either way, and reads as a deliberate
+  /// frame rather than an accident.
+  Widget _buildPalestineBanner(BuildContext context) {
+    return Semantics(
+      link: true,
+      label: 'Free Palestine. Ouvre revolutionarypapers.org dans ton navigateur.',
+      child: Material(
+        color: const Color(0xFFF5F1EA),
+        borderRadius: BorderRadius.circular(16),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: () => _open(context, _palestine),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            child: Image.asset(
+              'assets/images/free_palestine.png',
+              fit: BoxFit.contain,
+              // Excluded from semantics because the Semantics wrapper above
+              // already describes the whole tappable banner; announcing it
+              // twice would just be noise for a screen reader.
+              excludeFromSemantics: true,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

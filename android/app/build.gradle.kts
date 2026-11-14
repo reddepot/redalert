@@ -1,0 +1,144 @@
+import com.android.build.gradle.internal.api.ApkVariantOutputImpl
+import java.io.FileInputStream
+import java.util.Properties
+
+plugins {
+    id("com.android.application")
+    // The Flutter Gradle Plugin must be applied after the Android Gradle plugin.
+    // Kotlin is applied automatically by AGP's built-in Kotlin support.
+    id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Release signing: read from a local, git-ignored key.properties, or from
+// individual RELEASE_* environment variables (set as GitHub Actions secrets)
+// for CI builds. Falls back to debug signing so `flutter build apk --release`
+// always produces an installable APK even without a configured keystore.
+// GitHub Actions substitutes unset secrets with an empty string rather than
+// leaving the env var unset, so blank values must be treated as absent too.
+val keystorePropertiesFile = rootProject.file("key.properties")
+val keystoreProperties = Properties()
+if (keystorePropertiesFile.exists()) {
+    FileInputStream(keystorePropertiesFile).use { keystoreProperties.load(it) }
+}
+fun signingProperty(key: String, env: String): String? =
+    keystoreProperties.getProperty(key)?.takeIf { it.isNotBlank() }
+        ?: System.getenv(env)?.takeIf { it.isNotBlank() }
+
+val releaseStoreFilePath = signingProperty("storeFile", "RELEASE_STORE_FILE")
+val hasReleaseSigning = releaseStoreFilePath != null
+
+android {
+    namespace = "com.zaifears.locreminder"
+    compileSdk = flutter.compileSdkVersion
+    // Pinned to a literal rather than flutter.ndkVersion. The version this
+    // resolves to is what compiles libdartjni.so, and that library was the
+    // single file standing between this build and reproducing byte for byte
+    // on F-Droid. Naming it here means the toolchain cannot shift underneath
+    // a release the way it silently would if Flutter changed its default.
+    // Keep in step with ANDROID_NDK_VERSION in .github/workflows/build.yml.
+    ndkVersion = "28.2.13676358"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    defaultConfig {
+        applicationId = "com.zaifears.locreminder"
+        applicationIdSuffix = ".catalogue"
+        testInstrumentationRunner = "com.zaifears.locreminder.PassageRecoveryInstrumentation"
+        minSdk = flutter.minSdkVersion
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    // AGP otherwise stamps a dependency-metadata blob into the APK's signing
+    // block for Play's benefit. It is encrypted to a Google key, so nobody
+    // else — including F-Droid, and including us — can read or reproduce it,
+    // which both defeats reproducible builds and puts unauditable proprietary
+    // data in a package that claims to be entirely free software.
+    dependenciesInfo {
+        includeInApk = false
+        includeInBundle = false
+    }
+
+    signingConfigs {
+        if (hasReleaseSigning) {
+            create("release") {
+                storeFile = file(releaseStoreFilePath!!)
+                storePassword = signingProperty("storePassword", "RELEASE_STORE_PASSWORD")
+                keyAlias = signingProperty("keyAlias", "RELEASE_KEY_ALIAS")
+                keyPassword = signingProperty("keyPassword", "RELEASE_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            // Kept on one greppable line on purpose: F-Droid's build recipe
+            // deletes it so its own builds come out unsigned, ready for
+            // F-Droid to sign with the repository key.
+            signingConfig = if (hasReleaseSigning) signingConfigs.getByName("release") else signingConfigs.getByName("debug")
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+
+    // Roughly two thirds of a universal release APK's weight is native
+    // libraries duplicated for every ABI. Splitting means each device
+    // downloads only its own copy. The universal APK is kept alongside the
+    // splits (universalApk = true) rather than replaced: it is what the
+    // existing GitHub Release link and F-Droid's already-verified Binaries:
+    // entry both point at, and neither needs to change for this.
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("armeabi-v7a", "arm64-v8a", "x86_64")
+            isUniversalApk = true
+        }
+    }
+}
+
+// Gives each split APK a version code the universal build doesn't collide
+// with, so a device offered both installs whichever it actually matches.
+// The universal output carries no ABI filter, so it falls through untouched
+// and keeps the plain version code F-Droid's existing recipe entry expects.
+val abiCodes = mapOf("armeabi-v7a" to 1, "arm64-v8a" to 2, "x86_64" to 3)
+android.applicationVariants.configureEach {
+    val variant = this
+    variant.outputs.forEach { output ->
+        val abiVersionCode = abiCodes[output.filters.find { it.filterType == "ABI" }?.identifier]
+        if (abiVersionCode != null) {
+            (output as ApkVariantOutputImpl).versionCodeOverride = variant.versionCode * 10 + abiVersionCode
+        }
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+// Flutter's own embedding artifact pulls this in transitively to support
+// optional dynamic-feature delivery, which this app doesn't use. Left
+// resolvable, it rides along into every release APK as real, scannable
+// non-free bytecode (F-Droid's scanner flags it) even though nothing calls
+// it. -dontwarn in proguard-rules.pro only tells R8 the dangling reference
+// is fine; excluding it here is what actually keeps it out of the build.
+configurations.all {
+    exclude(group = "com.google.android.play")
+}
+
+dependencies {
+    implementation("androidx.core:core-ktx:1.13.1")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.json:json:20260814")
+}

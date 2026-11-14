@@ -1,0 +1,1444 @@
+{
+  "voice": "Piper fr_FR-siwis-medium",
+  "runtime": "sherpa-onnx 1.12.32",
+  "model_url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/vits-piper-fr_FR-siwis-medium.tar.bz2",
+  "model_sha256": "b015076c2bedcff22fbedd5da6ffb49b7d0abb2e3bdc51e1a7906e0000e411ed",
+  "speed": 1.08,
+  "utterances": {
+    "fixedCamera_30": {
+      "text": "Radar fixe, à environ trente mètres.",
+      "seconds": 2.131125,
+      "sha256": "43c35495192ab6e6f538cb5be4c30d32407ac2cfcb5657f8fb7c340347222247"
+    },
+    "fixedCamera_50": {
+      "text": "Radar fixe, à environ cinquante mètres.",
+      "seconds": 2.398167,
+      "sha256": "9d8a5a3b4e9dd8cc9af890f89a54cb87529295c8b1442a5fb413bd985d5bc821"
+    },
+    "fixedCamera_75": {
+      "text": "Radar fixe, à environ soixante-quinze mètres.",
+      "seconds": 2.549083,
+      "sha256": "164ee0a53b14a2ddba9ced6aed536e42e9c6e58889bfee0c4182054e9d34036e"
+    },
+    "fixedCamera_100": {
+      "text": "Radar fixe, à environ cent mètres.",
+      "seconds": 2.212396,
+      "sha256": "368b9fe9accd857a1469632910181ffe359102ad9a3196880ba63a17bfc17ed9"
+    },
+    "fixedCamera_150": {
+      "text": "Radar fixe, à environ cent cinquante mètres.",
+      "seconds": 2.514813,
+      "sha256": "9aa776df31a99a2088540bf738e47a8e3a3a420cc56a3261a79545dfd3a026fa"
+    },
+    "fixedCamera_200": {
+      "text": "Radar fixe, à environ deux cents mètres.",
+      "seconds": 2.316896,
+      "sha256": "3303920edcb2144cd81cdf0e1f05f9d42b8ce8ce7bda41a585f5fcb485accdfc"
+    },
+    "fixedCamera_250": {
+      "text": "Radar fixe, à environ deux cent cinquante mètres.",
+      "seconds": 2.665188,
+      "sha256": "4f036f853ed82a55feb797986f55a047e190c66c7827387e0c915edfdf5c1a0b"
+    },
+    "fixedCamera_300": {
+      "text": "Radar fixe, à environ trois cents mètres.",
+      "seconds": 2.421375,
+      "sha256": "5b8f949b505fb1eab9c23f993409e9b3398405b05f2698e998315d56fc0de061"
+    },
+    "fixedCamera_400": {
+      "text": "Radar fixe, à environ quatre cents mètres.",
+      "seconds": 2.467813,
+      "sha256": "5bcfec029e117f7149f6fd19c94384d7fa4fe26b13319a40cea39bf2caad9941"
+    },
+    "fixedCamera_500": {
+      "text": "Radar fixe, à environ cinq cents mètres.",
+      "seconds": 2.3065,
+      "sha256": "e43b6b32271b3b0ff160d335686ec0b6cec33dae1848118db1617c74f847cf62"
+    },
+    "fixedCamera_600": {
+      "text": "Radar fixe, à environ six cents mètres.",
+      "seconds": 2.491042,
+      "sha256": "88190ec2d87302ddfbd74330478456b10b9ee64cb2b06e57852fbb02e4f2da96"
+    },
+    "fixedCamera_750": {
+      "text": "Radar fixe, à environ sept cent cinquante mètres.",
+      "seconds": 2.61875,
+      "sha256": "4409e3521b922dc10a96ba6d3699ce56a7bc6b79a7868410d115fb7bf9368927"
+    },
+    "fixedCamera_1000": {
+      "text": "Radar fixe, à environ un kilomètre.",
+      "seconds": 2.212396,
+      "sha256": "a362c53cb65c004d6dcb0b4daee1cec38df8646040bb594cc62ca588fca42e2a"
+    },
+    "fixedCamera_1250": {
+      "text": "Radar fixe, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.5065,
+      "sha256": "073d86c535ab0bb4b49d91227be8f0a4ef2c9e7a2ad0a82dc6ee54a9303f5466"
+    },
+    "fixedCamera_1500": {
+      "text": "Radar fixe, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.001875,
+      "sha256": "414d583e7b8d6df36c6ebe17eeeeb57a77feb323df75d92b94e2912f5e92e46e"
+    },
+    "fixedCamera_2000": {
+      "text": "Radar fixe, à environ deux kilomètres.",
+      "seconds": 2.374938,
+      "sha256": "c6f3321e050db91a00ec48ba86095f4f9f31afda8b996bc448f1734f76994f00"
+    },
+    "fixedCamera_2500": {
+      "text": "Radar fixe, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.106521,
+      "sha256": "7505b1344176207b32a29bad21ada9789e6fdb0246f3042eae75d312fd125e55"
+    },
+    "fixedCamera_3000": {
+      "text": "Radar fixe, à environ trois kilomètres.",
+      "seconds": 2.549083,
+      "sha256": "06f455d4beee4948b9c3308291924a41ea2b29a36b64314a980997bc21ff4f24"
+    },
+    "redLightCamera_30": {
+      "text": "Radar de feu rouge, à environ trente mètres.",
+      "seconds": 2.653583,
+      "sha256": "034544fd938eeb7556feea70593132c5b751d4b66850358d07eabcd1df2c4aca"
+    },
+    "redLightCamera_50": {
+      "text": "Radar de feu rouge, à environ cinquante mètres.",
+      "seconds": 2.758063,
+      "sha256": "560f0ebc79a77d8d0ac2b8d3adcb9b9ee0c6c9d210b66edec5802fd63018d5da"
+    },
+    "redLightCamera_75": {
+      "text": "Radar de feu rouge, à environ soixante-quinze mètres.",
+      "seconds": 2.862563,
+      "sha256": "8635d0eed124456c5a9568effbcc4b77fce04af1d672d07694aa7c2db59063aa"
+    },
+    "redLightCamera_100": {
+      "text": "Radar de feu rouge, à environ cent mètres.",
+      "seconds": 2.51425,
+      "sha256": "e5134ff3eb7dc357f07841f3c85af3f4a74a9df4bd1c1c2f6f91d535daaabd2c"
+    },
+    "redLightCamera_150": {
+      "text": "Radar de feu rouge, à environ cent cinquante mètres.",
+      "seconds": 2.909,
+      "sha256": "934fe700db52184d90991bfdd80f7612f0cd9c93d1099d9f6515b7a631af1595"
+    },
+    "redLightCamera_200": {
+      "text": "Radar de feu rouge, à environ deux cents mètres.",
+      "seconds": 2.537396,
+      "sha256": "98df94bd94f966406233afc5ce50993b97549f88c51de19226b5bf45107a8764"
+    },
+    "redLightCamera_250": {
+      "text": "Radar de feu rouge, à environ deux cent cinquante mètres.",
+      "seconds": 3.001875,
+      "sha256": "f2e7ae2d61fb5fff01bd1fe45630814828dd3baf627c753ed30322a55cc9a31d"
+    },
+    "redLightCamera_300": {
+      "text": "Radar de feu rouge, à environ trois cents mètres.",
+      "seconds": 2.758063,
+      "sha256": "c1d2727f5a00872f0d63fc5a98d52c49ad19ed0b877b945590750dbc9e3d1570"
+    },
+    "redLightCamera_400": {
+      "text": "Radar de feu rouge, à environ quatre cents mètres.",
+      "seconds": 2.72325,
+      "sha256": "269d4103a89db9398d03b21edbca8b703d21be74198bd24a99be2a058d650fc3"
+    },
+    "redLightCamera_500": {
+      "text": "Radar de feu rouge, à environ cinq cents mètres.",
+      "seconds": 2.758063,
+      "sha256": "72dfd370e94d1de46e4abed4a1e841c9b666c690d7694e543ad173ae25bac626"
+    },
+    "redLightCamera_600": {
+      "text": "Radar de feu rouge, à environ six cents mètres.",
+      "seconds": 2.641979,
+      "sha256": "3e1fef2f7b07a4ce1b9c9efed6faf7e2436e1057bb66e370cf38ae9d2a577af9"
+    },
+    "redLightCamera_750": {
+      "text": "Radar de feu rouge, à environ sept cent cinquante mètres.",
+      "seconds": 3.3065,
+      "sha256": "a18fcc694036ceffa878a69d1f1da811975f4e206de85d31281df207d6449cf2"
+    },
+    "redLightCamera_1000": {
+      "text": "Radar de feu rouge, à environ un kilomètre.",
+      "seconds": 2.457125,
+      "sha256": "db85cfa97a70bf2fcf0ce3e9f0be3f72567bf3eb4f34c5684f752439b9c9b285"
+    },
+    "redLightCamera_1250": {
+      "text": "Radar de feu rouge, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.9065,
+      "sha256": "4b59777d48dd13beda7cdeec3bec3b364bca12b7baa126291a161d0ecff04a9a"
+    },
+    "redLightCamera_1500": {
+      "text": "Radar de feu rouge, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.306521,
+      "sha256": "ae97290b26872a5f83a3ad04ce08980e98dc31cb36376d19ad8cdd0bbce39314"
+    },
+    "redLightCamera_2000": {
+      "text": "Radar de feu rouge, à environ deux kilomètres.",
+      "seconds": 2.641979,
+      "sha256": "449fb3e312cee3df083b371c3d8b61dc903b07d373beb78c71ec5658068fecdc"
+    },
+    "redLightCamera_2500": {
+      "text": "Radar de feu rouge, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.5065,
+      "sha256": "9e329c68b0c357c6dc005c4a53afeaebc0fa3c263dd48d2cc8a2d3179b0868cb"
+    },
+    "redLightCamera_3000": {
+      "text": "Radar de feu rouge, à environ trois kilomètres.",
+      "seconds": 2.758063,
+      "sha256": "876a128efe98f5b8e1fac6f12324be64271ede2129d790fb3ea86c97e1e2a7b2"
+    },
+    "averageSpeedCamera_30": {
+      "text": "Radar de tronçon, à environ trente mètres.",
+      "seconds": 2.441333,
+      "sha256": "276865104d52901a396666044a081467de90660b83d579ac27ed03aeb024c6ae"
+    },
+    "averageSpeedCamera_50": {
+      "text": "Radar de tronçon, à environ cinquante mètres.",
+      "seconds": 2.525875,
+      "sha256": "e7c01fb08bb183e26545a9c386fe618cae480e4c038d8bd08c8ece330ffd36a3"
+    },
+    "averageSpeedCamera_75": {
+      "text": "Radar de tronçon, à environ soixante-quinze mètres.",
+      "seconds": 2.677708,
+      "sha256": "9d056016378630aabf339234aed9c3134f3f10e2f4a5f3242e1ed910643d0c8a"
+    },
+    "averageSpeedCamera_100": {
+      "text": "Radar de tronçon, à environ cent mètres.",
+      "seconds": 2.351729,
+      "sha256": "59863d72b7f2f8e1faf6807cb9146095514e8096717c837ca60edea8deda0359"
+    },
+    "averageSpeedCamera_150": {
+      "text": "Radar de tronçon, à environ cent cinquante mètres.",
+      "seconds": 2.862563,
+      "sha256": "7324464e77659e3e863bbea76554eeeefe175febf1c555c88d6ab887123382a2"
+    },
+    "averageSpeedCamera_200": {
+      "text": "Radar de tronçon, à environ deux cents mètres.",
+      "seconds": 2.607146,
+      "sha256": "a10996ff02680e29b0f62dbf28b9a555c68bf6157b8d8f860195c80a707a49d9"
+    },
+    "averageSpeedCamera_250": {
+      "text": "Radar de tronçon, à environ deux cent cinquante mètres.",
+      "seconds": 2.852,
+      "sha256": "ffcd7026204e76b93dcce0acfefb977258b51825ef53e651816f66f59c950e62"
+    },
+    "averageSpeedCamera_300": {
+      "text": "Radar de tronçon, à environ trois cents mètres.",
+      "seconds": 2.602688,
+      "sha256": "2e2bf95e931d66af6582db5fedd2ad12337a9d11c7d11a0b82c6659f20e3f8d1"
+    },
+    "averageSpeedCamera_400": {
+      "text": "Radar de tronçon, à environ quatre cents mètres.",
+      "seconds": 2.700021,
+      "sha256": "1e7fef5b2e67be73f4688d358bc38e6ebd3936a05c6742b1dbdd7c5420ec08bb"
+    },
+    "averageSpeedCamera_500": {
+      "text": "Radar de tronçon, à environ cinq cents mètres.",
+      "seconds": 2.469583,
+      "sha256": "1f96a11249a1d43684d6365c94e36737be9802a0161c4ecafa7f1dffcd761351"
+    },
+    "averageSpeedCamera_600": {
+      "text": "Radar de tronçon, à environ six cents mètres.",
+      "seconds": 2.61875,
+      "sha256": "8ce46b132cff170a6ae93bf10d88b1f71ee16b02ff86b73b3ba2439f012c2bcd"
+    },
+    "averageSpeedCamera_750": {
+      "text": "Radar de tronçon, à environ sept cent cinquante mètres.",
+      "seconds": 2.733625,
+      "sha256": "d895bf42ed924e85ca93d319724ce16504b6edf53748077c5cd870130de86a3b"
+    },
+    "averageSpeedCamera_1000": {
+      "text": "Radar de tronçon, à environ un kilomètre.",
+      "seconds": 2.467813,
+      "sha256": "d24dcbbf770e03379986c8e4d0fceac191c118da7afd1839c67632f9f474048f"
+    },
+    "averageSpeedCamera_1250": {
+      "text": "Radar de tronçon, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.4065,
+      "sha256": "52da38fc7036fd34e7e6aefb97150a9a2e364113beee3906fb09f7547743a84d"
+    },
+    "averageSpeedCamera_1500": {
+      "text": "Radar de tronçon, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.106521,
+      "sha256": "451d5d54052f510ff0786135c0c8971522ae0fe468e0c4cf22b992780af9f63c"
+    },
+    "averageSpeedCamera_2000": {
+      "text": "Radar de tronçon, à environ deux kilomètres.",
+      "seconds": 2.653583,
+      "sha256": "a86ce8c1fb61f4db7c404293b3de4ae32ac7712b96fb1196b018bc52a33734b8"
+    },
+    "averageSpeedCamera_2500": {
+      "text": "Radar de tronçon, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.4065,
+      "sha256": "0b14b121c0cc661e34dbe617a9f96c522a427694e004c49bd9b419d360725296"
+    },
+    "averageSpeedCamera_3000": {
+      "text": "Radar de tronçon, à environ trois kilomètres.",
+      "seconds": 2.595521,
+      "sha256": "8b2cfa674101f8bc0f00ceed40e56ed1b94d5fd531307c5eff87649085a5a3f6"
+    },
+    "levelCrossing_30": {
+      "text": "Passage à niveau, à environ trente mètres.",
+      "seconds": 2.426188,
+      "sha256": "3fa7276d1fc6b5c668cfe239b392c0eed53f49903e1d71d6dfec6483c0a44c3d"
+    },
+    "levelCrossing_50": {
+      "text": "Passage à niveau, à environ cinquante mètres.",
+      "seconds": 2.641979,
+      "sha256": "00cc296a43bbe6563fd10ff7a119c6b1b56348f232fcb638d2748a485495e966"
+    },
+    "levelCrossing_75": {
+      "text": "Passage à niveau, à environ soixante-quinze mètres.",
+      "seconds": 2.492896,
+      "sha256": "d04b386cea6a745c5048f92d04f13982c46bc64b1d1f8691353bdfd25cb9e0db"
+    },
+    "levelCrossing_100": {
+      "text": "Passage à niveau, à environ cent mètres.",
+      "seconds": 2.224021,
+      "sha256": "80541dca42acf9475fbcc9322bd141e08c1bf06291929652a4b1e721dad9341c"
+    },
+    "levelCrossing_150": {
+      "text": "Passage à niveau, à environ cent cinquante mètres.",
+      "seconds": 2.600438,
+      "sha256": "05b4ffbc0d4a035b8600d90ea087a08e25f74b4e01a6683dce1ddfcbdd39a96c"
+    },
+    "levelCrossing_200": {
+      "text": "Passage à niveau, à environ deux cents mètres.",
+      "seconds": 2.495125,
+      "sha256": "63ad27015217dc70ec9f8bddca1e3e89ac23e19789687310177f6627991b6f2d"
+    },
+    "levelCrossing_250": {
+      "text": "Passage à niveau, à environ deux cent cinquante mètres.",
+      "seconds": 3.1065,
+      "sha256": "70599435340bac4ecb6688dc97dee27bf0b584e7348920e9d3d0d590911cfb6d"
+    },
+    "levelCrossing_300": {
+      "text": "Passage à niveau, à environ trois cents mètres.",
+      "seconds": 2.665188,
+      "sha256": "7b7c030f8e9b2100db6a82766c66a7002a7a6ab897d353534fc2e1603b6a64be"
+    },
+    "levelCrossing_400": {
+      "text": "Passage à niveau, à environ quatre cents mètres.",
+      "seconds": 2.398833,
+      "sha256": "f9bdb78d50ef580806eef08d9ab7c025cac60a574817c3b9d921d0819818b991"
+    },
+    "levelCrossing_500": {
+      "text": "Passage à niveau, à environ cinq cents mètres.",
+      "seconds": 2.630354,
+      "sha256": "10d74a45495e854298356e302949e204c3c7ddf9e2b3dfc759910483d0e9e220"
+    },
+    "levelCrossing_600": {
+      "text": "Passage à niveau, à environ six cents mètres.",
+      "seconds": 2.641979,
+      "sha256": "c4f4f74eee06b00139b4029994304f0756b1fa67e270c285adf81ff9ea513b23"
+    },
+    "levelCrossing_750": {
+      "text": "Passage à niveau, à environ sept cent cinquante mètres.",
+      "seconds": 2.888542,
+      "sha256": "7be926687dae7c6286dafe6e933db94db9400fe8920bd43817d06ca16281ad0a"
+    },
+    "levelCrossing_1000": {
+      "text": "Passage à niveau, à environ un kilomètre.",
+      "seconds": 2.194813,
+      "sha256": "ee5600bffd25884d3f869ad68381921bb9f242d96890888ff0597c0ef21cdb53"
+    },
+    "levelCrossing_1250": {
+      "text": "Passage à niveau, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.6065,
+      "sha256": "27fc6da3b8055e4409b65550016c1aaf68111df120996f9c8f155c51580c2c3e"
+    },
+    "levelCrossing_1500": {
+      "text": "Passage à niveau, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.1065,
+      "sha256": "22af4e7fac2efd4580b7f575fd6d0c635fd6f19ba0a35da603e1f91e1b425dab"
+    },
+    "levelCrossing_2000": {
+      "text": "Passage à niveau, à environ deux kilomètres.",
+      "seconds": 2.295208,
+      "sha256": "9f14384a7d1c9167a6f2e946f32fc65ce5fee100841bf6991dc22cf19e0c48b5"
+    },
+    "levelCrossing_2500": {
+      "text": "Passage à niveau, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.3065,
+      "sha256": "171ea9fb78c585950a51f5c92a7ca3242b90ec7e8befc9008ee72d678a8af278"
+    },
+    "levelCrossing_3000": {
+      "text": "Passage à niveau, à environ trois kilomètres.",
+      "seconds": 2.862563,
+      "sha256": "085255ae6a325ea053c6ccfdfea3fec1c744a8d4f31239a1aaccdd758b33701d"
+    },
+    "levelCrossingLowClearance_30": {
+      "text": "Passage à niveau difficile, à environ trente mètres.",
+      "seconds": 2.912125,
+      "sha256": "180e6da6a53e18979cce04d78b0a92babca174af5e953d216825068ca79e6eae"
+    },
+    "levelCrossingLowClearance_50": {
+      "text": "Passage à niveau difficile, à environ cinquante mètres.",
+      "seconds": 2.955438,
+      "sha256": "838b6e236370fb143ef0837860bc781966ea8db4c60d53a21a9f2f3c8ef0e9a3"
+    },
+    "levelCrossingLowClearance_75": {
+      "text": "Passage à niveau difficile, à environ soixante-quinze mètres.",
+      "seconds": 3.2065,
+      "sha256": "82f52aa7453b450c07cc20c2829c29a8dc3be4ce5677f064ddb40b7ceb0c011b"
+    },
+    "levelCrossingLowClearance_100": {
+      "text": "Passage à niveau difficile, à environ cent mètres.",
+      "seconds": 2.943833,
+      "sha256": "3a8bb03194d69b2b49a7560727a0131e63efe4075551f1c824e840139d833276"
+    },
+    "levelCrossingLowClearance_150": {
+      "text": "Passage à niveau difficile, à environ cent cinquante mètres.",
+      "seconds": 3.2065,
+      "sha256": "56cc4782725134b0f170e977c7b2b625e3fe7c7d606c392a1ad2a9e0a188fde1"
+    },
+    "levelCrossingLowClearance_200": {
+      "text": "Passage à niveau difficile, à environ deux cents mètres.",
+      "seconds": 3.1065,
+      "sha256": "451566aba76b791fcc0a4c1b20028dcfd1a89414a8af2b1ee248fab42be06b1e"
+    },
+    "levelCrossingLowClearance_250": {
+      "text": "Passage à niveau difficile, à environ deux cent cinquante mètres.",
+      "seconds": 3.506521,
+      "sha256": "15d35229965d0cc4fcee3e1902a1120057d35d59c34c4cdc19ced1050751ac06"
+    },
+    "levelCrossingLowClearance_300": {
+      "text": "Passage à niveau difficile, à environ trois cents mètres.",
+      "seconds": 3.3065,
+      "sha256": "080fe55b6a32bdb457b8d213ec43ef10a3972d765207f605444ffb9b5530e00a"
+    },
+    "levelCrossingLowClearance_400": {
+      "text": "Passage à niveau difficile, à environ quatre cents mètres.",
+      "seconds": 2.978667,
+      "sha256": "2adfa47ea6eb50b3ac6fa24099049b3d96b78ec80b417ce8342dc5c2e080b096"
+    },
+    "levelCrossingLowClearance_500": {
+      "text": "Passage à niveau difficile, à environ cinq cents mètres.",
+      "seconds": 3.1065,
+      "sha256": "9e17219fd2f5caec441e89947acc865b0b59d9d05af61268d16174742a9bd2a0"
+    },
+    "levelCrossingLowClearance_600": {
+      "text": "Passage à niveau difficile, à environ six cents mètres.",
+      "seconds": 3.1065,
+      "sha256": "928718e85384dd608706eeb6575c29559a3b9f650639c564cd7df8677c50cf14"
+    },
+    "levelCrossingLowClearance_750": {
+      "text": "Passage à niveau difficile, à environ sept cent cinquante mètres.",
+      "seconds": 3.5065,
+      "sha256": "99723a14c6af35dc4ab2f124c391180d88b839b6728e50a18ab4989b1edc80c5"
+    },
+    "levelCrossingLowClearance_1000": {
+      "text": "Passage à niveau difficile, à environ un kilomètre.",
+      "seconds": 2.967042,
+      "sha256": "3de0b3caf157c8fadd61dd3340ae5fa57c649f7ced589dc04ebaf8c6ce0ddca0"
+    },
+    "levelCrossingLowClearance_1250": {
+      "text": "Passage à niveau difficile, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 4.006521,
+      "sha256": "b6f61c6601318da2ecaae5bdd7b3165b71fe8faffd20883fbfe1d420bb51a7c4"
+    },
+    "levelCrossingLowClearance_1500": {
+      "text": "Passage à niveau difficile, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.7065,
+      "sha256": "1b4ae039f671146034318356778cbf77e2863b22c901d15245cd8b6e22c8be91"
+    },
+    "levelCrossingLowClearance_2000": {
+      "text": "Passage à niveau difficile, à environ deux kilomètres.",
+      "seconds": 2.990313,
+      "sha256": "16d88ff96933286a088c91307912a1b7b57aff697e2fc5f12da3186123816b7a"
+    },
+    "levelCrossingLowClearance_2500": {
+      "text": "Passage à niveau difficile, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.706521,
+      "sha256": "e39913814936bf8c920000427832cd3818d77a30c34daac4e37e015b56aef67d"
+    },
+    "levelCrossingLowClearance_3000": {
+      "text": "Passage à niveau difficile, à environ trois kilomètres.",
+      "seconds": 3.2065,
+      "sha256": "8bbe53d7bb21c0c291a130df5d95d4a072f6fa4f272ecf38d734dcc75ae2ac5b"
+    },
+    "highSpeedBump_30": {
+      "text": "Ralentisseur, à environ trente mètres.",
+      "seconds": 2.224021,
+      "sha256": "2aaedca5ec488681a5dd30b011e3a3778c79241541c288c62e004054b7639be5"
+    },
+    "highSpeedBump_50": {
+      "text": "Ralentisseur, à environ cinquante mètres.",
+      "seconds": 2.340104,
+      "sha256": "4ed2c3fa922d3dc5d2e4273c0ad9e25997692214366d27064e817311f74d2455"
+    },
+    "highSpeedBump_75": {
+      "text": "Ralentisseur, à environ soixante-quinze mètres.",
+      "seconds": 2.453396,
+      "sha256": "f481af92b7590dd904a3f675452a7766063410573ed8c9ea24d6f165183355b4"
+    },
+    "highSpeedBump_100": {
+      "text": "Ralentisseur, à environ cent mètres.",
+      "seconds": 2.161146,
+      "sha256": "1e17cdbfe1f800cf2d2a07249cae3ba97f9c171949a9a830d8f4f1e14f3b36c2"
+    },
+    "highSpeedBump_150": {
+      "text": "Ralentisseur, à environ cent cinquante mètres.",
+      "seconds": 2.537479,
+      "sha256": "d5dfe9588c1e4b957836a0ecb0a47d5f6e44ed7bfe0fa0f0ed753350136dc23b"
+    },
+    "highSpeedBump_200": {
+      "text": "Ralentisseur, à environ deux cents mètres.",
+      "seconds": 2.444604,
+      "sha256": "15a54d95043ec06e0af1a7d602b20b6b79e03ae189f30db9fabe039a15a741a0"
+    },
+    "highSpeedBump_250": {
+      "text": "Ralentisseur, à environ deux cent cinquante mètres.",
+      "seconds": 2.658521,
+      "sha256": "3fdf09916ff63c55c4d89f44359a8b6fbc06533c0da1701f23daef620ed26568"
+    },
+    "highSpeedBump_300": {
+      "text": "Ralentisseur, à environ trois cents mètres.",
+      "seconds": 2.383917,
+      "sha256": "58eb3e6303c493bc39ca948b06a0b48652a4f8d2cc4ded33ea5482d00c6e1d43"
+    },
+    "highSpeedBump_400": {
+      "text": "Ralentisseur, à environ quatre cents mètres.",
+      "seconds": 2.338833,
+      "sha256": "d9ec7d62f7f3d4b6c4589c85599752e8b4301027e36896f3cc7f645425ef3a7b"
+    },
+    "highSpeedBump_500": {
+      "text": "Ralentisseur, à environ cinq cents mètres.",
+      "seconds": 2.248,
+      "sha256": "eed8543704bfd7b77b661c494cd2b0913392e231b69f8f34e2c5f2c74f1c552e"
+    },
+    "highSpeedBump_600": {
+      "text": "Ralentisseur, à environ six cents mètres.",
+      "seconds": 2.372042,
+      "sha256": "7ff71cc392ea9b6023deb4d37230c5f7a8ed62b54cc348ae94014de5d7fadb80"
+    },
+    "highSpeedBump_750": {
+      "text": "Ralentisseur, à environ sept cent cinquante mètres.",
+      "seconds": 2.844375,
+      "sha256": "fc538b8cd7f4d1136dda9b922315ac4e2de6520122735a9f53635cc9e7c8e5c8"
+    },
+    "highSpeedBump_1000": {
+      "text": "Ralentisseur, à environ un kilomètre.",
+      "seconds": 2.200021,
+      "sha256": "13dd86aa0c6c54f3e93c264da6d26e295e98d04ece8aec27a2d8e717839e66c9"
+    },
+    "highSpeedBump_1250": {
+      "text": "Ralentisseur, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.5065,
+      "sha256": "b9c30f922b1c372dec96dcca3d036ae116170d3abaf31cdd3e39e7e069c15613"
+    },
+    "highSpeedBump_1500": {
+      "text": "Ralentisseur, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.106521,
+      "sha256": "b91110df0a5ffc04ea68749d3fcd53a2eb4b3fae23b4aa59c9c7475467ce665b"
+    },
+    "highSpeedBump_2000": {
+      "text": "Ralentisseur, à environ deux kilomètres.",
+      "seconds": 2.297292,
+      "sha256": "35b04ac586746cb211bfdeffa1db0178049b00d2cab82c2d17b48ce80d9e3226"
+    },
+    "highSpeedBump_2500": {
+      "text": "Ralentisseur, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 2.997167,
+      "sha256": "cb149688ef375c730ce3eda397bce0e516b69b395edd12608ab663b663d0729b"
+    },
+    "highSpeedBump_3000": {
+      "text": "Ralentisseur, à environ trois kilomètres.",
+      "seconds": 2.44025,
+      "sha256": "424c4ff8f859341d6054c4a17685091b8cd6d692ef3593691348d4abeed319ea"
+    },
+    "dangerZone_30": {
+      "text": "Zone de vigilance, à environ trente mètres.",
+      "seconds": 2.570771,
+      "sha256": "843251164254b0b0d8bb06b0f083e4a86ca5e85329286d2d84a6507ef303612a"
+    },
+    "dangerZone_50": {
+      "text": "Zone de vigilance, à environ cinquante mètres.",
+      "seconds": 2.943833,
+      "sha256": "0c16c559ec932178ffd6144127723a918f01bc3e80f2a58e5127fa04e54d5443"
+    },
+    "dangerZone_75": {
+      "text": "Zone de vigilance, à environ soixante-quinze mètres.",
+      "seconds": 2.875167,
+      "sha256": "3f50f9d33d78e1824f76576616fd525c88429234ebf7ff74e1102e02c67c0bda"
+    },
+    "dangerZone_100": {
+      "text": "Zone de vigilance, à environ cent mètres.",
+      "seconds": 2.51425,
+      "sha256": "c3f0498875ad3f7a47a37d18469c7bfde849fcd6c1261f907d31db1ebea03614"
+    },
+    "dangerZone_150": {
+      "text": "Zone de vigilance, à environ cent cinquante mètres.",
+      "seconds": 2.819208,
+      "sha256": "bf51bb0157050939d833ba2d0f5f72fb4e9cc9a58ddf624ed73ec070b7d45e18"
+    },
+    "dangerZone_200": {
+      "text": "Zone de vigilance, à environ deux cents mètres.",
+      "seconds": 2.850958,
+      "sha256": "f0409c23051b09b9109827cde8dd25ebeb27c676c5d4e63692a5e24cd83efea0"
+    },
+    "dangerZone_250": {
+      "text": "Zone de vigilance, à environ deux cent cinquante mètres.",
+      "seconds": 3.206521,
+      "sha256": "7389219a5b953d32a60a8a878b6cbf91ecd348ba0e58585203f96b97ec50bda6"
+    },
+    "dangerZone_300": {
+      "text": "Zone de vigilance, à environ trois cents mètres.",
+      "seconds": 2.745917,
+      "sha256": "3f2809163afa8f329f95d2506d722c1a5b1bc77bc2102dbf12383d7424c91a15"
+    },
+    "dangerZone_400": {
+      "text": "Zone de vigilance, à environ quatre cents mètres.",
+      "seconds": 2.816125,
+      "sha256": "e21e5bc0e74014cebc88a5b4f44d509e702c94ed2da659812d12a30021dbf045"
+    },
+    "dangerZone_500": {
+      "text": "Zone de vigilance, à environ cinq cents mètres.",
+      "seconds": 2.7325,
+      "sha256": "fc7690f730964d77f18f52d76fd73ca8a73a41d34c2f5437ccf742de8604aef9"
+    },
+    "dangerZone_600": {
+      "text": "Zone de vigilance, à environ six cents mètres.",
+      "seconds": 2.8045,
+      "sha256": "f96b00be4ae25373126129688360c1f8f7954b346d318b2c44d0716df157f44a"
+    },
+    "dangerZone_750": {
+      "text": "Zone de vigilance, à environ sept cent cinquante mètres.",
+      "seconds": 3.3065,
+      "sha256": "88ba5afa8ccdbebb4535f2917b14a6de5f09b69a6d12b7b935b86d2ba875e637"
+    },
+    "dangerZone_1000": {
+      "text": "Zone de vigilance, à environ un kilomètre.",
+      "seconds": 2.549083,
+      "sha256": "db92e9109cbb0d5da56e2d3a94a062ec9060eace699394d15cee54452b5f83d2"
+    },
+    "dangerZone_1250": {
+      "text": "Zone de vigilance, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.8065,
+      "sha256": "8360c38a8fca73ac5f570152b94c3a85a00e17b9d4f8e523b25149092caa6df4"
+    },
+    "dangerZone_1500": {
+      "text": "Zone de vigilance, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.2065,
+      "sha256": "1653ac5c2a0aa2134adde17cbd85a7bc1c6e28faa78a06bf9a58cd50b6134c30"
+    },
+    "dangerZone_2000": {
+      "text": "Zone de vigilance, à environ deux kilomètres.",
+      "seconds": 2.816125,
+      "sha256": "b50869b70d003afd59d6f47c37ab7b544408d9befdd0e6d4ec66729e0aa08bc7"
+    },
+    "dangerZone_2500": {
+      "text": "Zone de vigilance, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.506521,
+      "sha256": "d61552ea1469d9e19e6b9db347bc9a7902fcb9d0cf3b9c6397fd1f07aafc2172"
+    },
+    "dangerZone_3000": {
+      "text": "Zone de vigilance, à environ trois kilomètres.",
+      "seconds": 2.897396,
+      "sha256": "bcc9c284b2300b2c1ae594aea63f81d9c740da98445c028c7a8bf5c66c912f54"
+    },
+    "sharpTurn_30": {
+      "text": "Virage serré, à environ trente mètres.",
+      "seconds": 2.3285,
+      "sha256": "075a52f8922d5f78e34a11896c13995c13be5a04be368497b62fd1dc59d8d8c2"
+    },
+    "sharpTurn_50": {
+      "text": "Virage serré, à environ cinquante mètres.",
+      "seconds": 2.421917,
+      "sha256": "2a21d318646f1dac4df9279b5000300f76e8f1df2c459d8664dce362e0e4e5bf"
+    },
+    "sharpTurn_75": {
+      "text": "Virage serré, à environ soixante-quinze mètres.",
+      "seconds": 2.573583,
+      "sha256": "bec3d42dabb48f27ac80766202f36b428c04efd7c4e243a6e9e85098c3659059"
+    },
+    "sharpTurn_100": {
+      "text": "Virage serré, à environ cent mètres.",
+      "seconds": 2.199021,
+      "sha256": "18868cce2946b12acbac05306914bafa9d92af826fc6a6f78e37d64b180cc166"
+    },
+    "sharpTurn_150": {
+      "text": "Virage serré, à environ cent cinquante mètres.",
+      "seconds": 2.562063,
+      "sha256": "077b99b3b2e0dfab736fe242e86a711ac77da1110c70e09f79bf654ff558a33b"
+    },
+    "sharpTurn_200": {
+      "text": "Virage serré, à environ deux cents mètres.",
+      "seconds": 2.549083,
+      "sha256": "55b1467520ce7c3c3f014551a3a87ca8bb1b79f1070cbb718288e13ec7936921"
+    },
+    "sharpTurn_250": {
+      "text": "Virage serré, à environ deux cent cinquante mètres.",
+      "seconds": 2.792896,
+      "sha256": "bcbca5ba5d9137e1556ee018686dc6d9abc0034868643c6e85556f37a10b1f2a"
+    },
+    "sharpTurn_300": {
+      "text": "Virage serré, à environ trois cents mètres.",
+      "seconds": 2.493313,
+      "sha256": "e526caed62b47793a50f90c6cbce6e92ba5bc1f9dd43af069fdd2dc70db900eb"
+    },
+    "sharpTurn_400": {
+      "text": "Virage serré, à environ quatre cents mètres.",
+      "seconds": 2.516708,
+      "sha256": "00a5173f8b4c24fa34930a21b2e905db958a15ac66872752d9b508b14f79dacc"
+    },
+    "sharpTurn_500": {
+      "text": "Virage serré, à environ cinq cents mètres.",
+      "seconds": 2.665188,
+      "sha256": "a34f0fefbf97748fb15828c1956c3926629a3a78a90288a2df57d7df67b59e99"
+    },
+    "sharpTurn_600": {
+      "text": "Virage serré, à environ six cents mètres.",
+      "seconds": 2.444688,
+      "sha256": "a8c2f2b9fc2926fad9ee033719788cb36ef259a4c1392505cb04c08c7657db9c"
+    },
+    "sharpTurn_750": {
+      "text": "Virage serré, à environ sept cent cinquante mètres.",
+      "seconds": 2.695125,
+      "sha256": "1c789f8a964063f14ddc82626d8c472679372f9b16a94e5d5f50aa86c0f491e9"
+    },
+    "sharpTurn_1000": {
+      "text": "Virage serré, à environ un kilomètre.",
+      "seconds": 2.314979,
+      "sha256": "ccb85db3f1f84a78ba9e60d512bad7f4fa2f6bd1658b60f8fb099a8491655113"
+    },
+    "sharpTurn_1250": {
+      "text": "Virage serré, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.6065,
+      "sha256": "30fb28981641ca774c07843d3308c1aa625a0f030c09a0e095bc4c8b6bffd1e2"
+    },
+    "sharpTurn_1500": {
+      "text": "Virage serré, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.1065,
+      "sha256": "1417dc69a8cd2ef6ad555c883380e4d48cb6c144e863b034ee3a626f32d561f6"
+    },
+    "sharpTurn_2000": {
+      "text": "Virage serré, à environ deux kilomètres.",
+      "seconds": 2.479438,
+      "sha256": "55760295b3e162dc4ef7122a86fe0e3929f8abc70f429d0edd4a661a6e12c4ab"
+    },
+    "sharpTurn_2500": {
+      "text": "Virage serré, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.3065,
+      "sha256": "0a34162267f0d7759ab7dfb794697ea946f476eeb521a1ba46049626e523a328"
+    },
+    "sharpTurn_3000": {
+      "text": "Virage serré, à environ trois kilomètres.",
+      "seconds": 2.457521,
+      "sha256": "e612efe595651c81961a109fa11072f5df40106c96fee1a60214441978d58c4d"
+    },
+    "rumbleStrip_30": {
+      "text": "Bandes rugueuses, à environ trente mètres.",
+      "seconds": 2.398167,
+      "sha256": "da4581e7a6acef9a4bb4d3f2f8c6b56dd9f566997e83220c98db36d3ee10f715"
+    },
+    "rumbleStrip_50": {
+      "text": "Bandes rugueuses, à environ cinquante mètres.",
+      "seconds": 2.461208,
+      "sha256": "088fc62250ac35b0b5551f8310405cca5f5dce36e192207c4c2280cb7582118e"
+    },
+    "rumbleStrip_75": {
+      "text": "Bandes rugueuses, à environ soixante-quinze mètres.",
+      "seconds": 2.500146,
+      "sha256": "5d2773095039e4ec38fd1908ba1e90ac31f6f91ad30108a288b6f308e16e48e9"
+    },
+    "rumbleStrip_100": {
+      "text": "Bandes rugueuses, à environ cent mètres.",
+      "seconds": 2.176896,
+      "sha256": "12096c0df0ecb2bd087b078a70b958dd0ff60ae304dea5c13c9b9656d89d1532"
+    },
+    "rumbleStrip_150": {
+      "text": "Bandes rugueuses, à environ cent cinquante mètres.",
+      "seconds": 2.745563,
+      "sha256": "ba78ef3b363634b84d8ae9a186c13429fd3ffa2f6b8e01a920899ed12d87d260"
+    },
+    "rumbleStrip_200": {
+      "text": "Bandes rugueuses, à environ deux cents mètres.",
+      "seconds": 2.475125,
+      "sha256": "75d9ae437a755e792493e8a39ca27a8f71ab8915b1d3ab4e1a570698deabb5a3"
+    },
+    "rumbleStrip_250": {
+      "text": "Bandes rugueuses, à environ deux cent cinquante mètres.",
+      "seconds": 2.965646,
+      "sha256": "e1ef52681ef5dadbe74ffa76f18bc58010c5370513d70c0c18f5055a42733842"
+    },
+    "rumbleStrip_300": {
+      "text": "Bandes rugueuses, à environ trois cents mètres.",
+      "seconds": 2.429583,
+      "sha256": "f02752772e7dd843bc1f18ec505f9a2bacfd86d6f36817af8202161ba6f489fd"
+    },
+    "rumbleStrip_400": {
+      "text": "Bandes rugueuses, à environ quatre cents mètres.",
+      "seconds": 2.544458,
+      "sha256": "44b61b6472b7ed41dbc7e38cad115a7ca1ecda1a47d6980eb764c6601c40c32b"
+    },
+    "rumbleStrip_500": {
+      "text": "Bandes rugueuses, à environ cinq cents mètres.",
+      "seconds": 2.390542,
+      "sha256": "8524ca02ffd4b0875a0953336158188eccd056ceb849d006dc92c90e8a6010a5"
+    },
+    "rumbleStrip_600": {
+      "text": "Bandes rugueuses, à environ six cents mètres.",
+      "seconds": 2.477354,
+      "sha256": "282db9f72fffdf262053e03d5e36071c147a9cadf452ca649f472a0ff288be7f"
+    },
+    "rumbleStrip_750": {
+      "text": "Bandes rugueuses, à environ sept cent cinquante mètres.",
+      "seconds": 2.940917,
+      "sha256": "e67603222fb61153d0c33fa4a389985aed671dad076fcfae525081505fe9c315"
+    },
+    "rumbleStrip_1000": {
+      "text": "Bandes rugueuses, à environ un kilomètre.",
+      "seconds": 2.456208,
+      "sha256": "4d9c1dd4e3b8830093d9d1671c4a02ea6fd60fd3996a7b9b806fbab363dd8d2a"
+    },
+    "rumbleStrip_1250": {
+      "text": "Bandes rugueuses, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.7065,
+      "sha256": "794bd5ba9dfd824ae39d96b74bd1d2de0a4a0fb6d644a84ff3a2daa80b87e5b0"
+    },
+    "rumbleStrip_1500": {
+      "text": "Bandes rugueuses, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.3065,
+      "sha256": "210e75f01641e1ba38cf873f54dedd2e2dcc00d9bdf013ac9a4406d300eca7e8"
+    },
+    "rumbleStrip_2000": {
+      "text": "Bandes rugueuses, à environ deux kilomètres.",
+      "seconds": 2.393083,
+      "sha256": "6bf2ef0759a9b5034f8fe912b828bb178b561f6943cb31edebf3896cf3371b56"
+    },
+    "rumbleStrip_2500": {
+      "text": "Bandes rugueuses, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.2065,
+      "sha256": "7bbe4078f1540743b68c3bac8ad4b75a97b526d02cda58707488d4d78d05d6a1"
+    },
+    "rumbleStrip_3000": {
+      "text": "Bandes rugueuses, à environ trois kilomètres.",
+      "seconds": 2.376938,
+      "sha256": "dd3419c5e683ee1c72d9ff0d584ff6e18f536197488ff8f602d694456a064b6a"
+    },
+    "roadDip_30": {
+      "text": "Creux de chaussée, à environ trente mètres.",
+      "seconds": 2.255396,
+      "sha256": "7499daada9a793b063ebf1fa8896c4ba87b42cfb32ce2534e00e78b5dc0067c5"
+    },
+    "roadDip_50": {
+      "text": "Creux de chaussée, à environ cinquante mètres.",
+      "seconds": 2.546542,
+      "sha256": "39f758b7ff389b3d3b7aebe2ad9edb27d6b6425ccfa5d62d2b6a3ca543b6d506"
+    },
+    "roadDip_75": {
+      "text": "Creux de chaussée, à environ soixante-quinze mètres.",
+      "seconds": 2.561375,
+      "sha256": "9a435880bf4e893b6b54c922ba5aff7b59571af0b437813d647dbf7797945622"
+    },
+    "roadDip_100": {
+      "text": "Creux de chaussée, à environ cent mètres.",
+      "seconds": 2.061479,
+      "sha256": "4205090db374c7f5d14f8c5dba43c41364cb9208707a2213b8e7790b14f65565"
+    },
+    "roadDip_150": {
+      "text": "Creux de chaussée, à environ cent cinquante mètres.",
+      "seconds": 2.631771,
+      "sha256": "edc9553a61abd5c87c6498db7f6af4e9e488d1bd1d8d91981b5dc6d80a1311fe"
+    },
+    "roadDip_200": {
+      "text": "Creux de chaussée, à environ deux cents mètres.",
+      "seconds": 2.298563,
+      "sha256": "439d26518fe327b6cf8c448fdbaaa42d6de8132b5275ec7c6bfdcec83258a2a6"
+    },
+    "roadDip_250": {
+      "text": "Creux de chaussée, à environ deux cent cinquante mètres.",
+      "seconds": 2.920604,
+      "sha256": "06ca5da7956f76cf4d6390b380a0b46a836ddae4fdbfd18289aab047b0698e49"
+    },
+    "roadDip_300": {
+      "text": "Creux de chaussée, à environ trois cents mètres.",
+      "seconds": 2.688417,
+      "sha256": "6970fa486882e34a4e94680c41d5b9f78de510637a5323efdcac8ecf69586a55"
+    },
+    "roadDip_400": {
+      "text": "Creux de chaussée, à environ quatre cents mètres.",
+      "seconds": 2.530042,
+      "sha256": "86ee4d25e4fa0e1bec769a153fddab4693f63cd62fa1dbd7a45828557eab6f10"
+    },
+    "roadDip_500": {
+      "text": "Creux de chaussée, à environ cinq cents mètres.",
+      "seconds": 2.352813,
+      "sha256": "e5b426b4a76c5a2eb4d7643b16cc6dc2777eebcebb787003f99c71f370f3ad95"
+    },
+    "roadDip_600": {
+      "text": "Creux de chaussée, à environ six cents mètres.",
+      "seconds": 2.280208,
+      "sha256": "6ccfd0199052f17a567ab12c90bffd61ec8cc1b93512697c0ce8a76c31ba0ffa"
+    },
+    "roadDip_750": {
+      "text": "Creux de chaussée, à environ sept cent cinquante mètres.",
+      "seconds": 2.831542,
+      "sha256": "0aa609de608441a729062e93661ee5d21f0e47746158740399a3f875dee9589f"
+    },
+    "roadDip_1000": {
+      "text": "Creux de chaussée, à environ un kilomètre.",
+      "seconds": 2.041521,
+      "sha256": "3a02dea650760d1d66850bf660afe0a5a2ac92111f2df8df053c122ba9da6709"
+    },
+    "roadDip_1250": {
+      "text": "Creux de chaussée, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.306521,
+      "sha256": "9d243e91450b04f7d15b8be6d45271ac9baec24b0f6bd673a7c5328cbd2029e8"
+    },
+    "roadDip_1500": {
+      "text": "Creux de chaussée, à environ un kilomètre cinq cents mètres.",
+      "seconds": 2.942917,
+      "sha256": "6bb658ece4c27100035409d67cd373b2981db17df7d1d54c27be0bdb92ea78e4"
+    },
+    "roadDip_2000": {
+      "text": "Creux de chaussée, à environ deux kilomètres.",
+      "seconds": 2.421375,
+      "sha256": "5b644d393617bf486ca37a19a17e37761c76d51d115fc82b6f2eae515e4a878a"
+    },
+    "roadDip_2500": {
+      "text": "Creux de chaussée, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.2065,
+      "sha256": "1b648548e8b467a74ce2e4d5e8170e4a86c7be92a4dea4169f833ed225fc14fa"
+    },
+    "roadDip_3000": {
+      "text": "Creux de chaussée, à environ trois kilomètres.",
+      "seconds": 2.316938,
+      "sha256": "7130595bfad7fdb171f9d1d83a68bf4f91bbdcdd21bce1bb41882ad172b52f2f"
+    },
+    "roadNarrowing_30": {
+      "text": "Chaussée rétrécie, à environ trente mètres.",
+      "seconds": 2.285417,
+      "sha256": "fb10396584d1fcda0666b9451eb4bb887c1f7f6783a17ff9271c42410152ac77"
+    },
+    "roadNarrowing_50": {
+      "text": "Chaussée rétrécie, à environ cinquante mètres.",
+      "seconds": 2.390354,
+      "sha256": "eec880730117532d63166dbbfc7cef74baa8c1e3d0c1d6c419896ae989fced94"
+    },
+    "roadNarrowing_75": {
+      "text": "Chaussée rétrécie, à environ soixante-quinze mètres.",
+      "seconds": 2.550958,
+      "sha256": "5740dc83e0a0b77aa581d85b375eaa17683441448e8aa972fda5011bd2fa3e13"
+    },
+    "roadNarrowing_100": {
+      "text": "Chaussée rétrécie, à environ cent mètres.",
+      "seconds": 2.136938,
+      "sha256": "0d8b173eabcf71e21b23e18bbebe463e2324a7bf412549dee837d8c131642b21"
+    },
+    "roadNarrowing_150": {
+      "text": "Chaussée rétrécie, à environ cent cinquante mètres.",
+      "seconds": 2.611458,
+      "sha256": "fad8b6c2e810159b4b22694c9e07a74fd62df6a0db44ff356a855f9ef9177ebd"
+    },
+    "roadNarrowing_200": {
+      "text": "Chaussée rétrécie, à environ deux cents mètres.",
+      "seconds": 2.464375,
+      "sha256": "91a9b9a7328a93cdb1b225f1fe1edf88f07c31269b6870e6b7d5bc6160b26342"
+    },
+    "roadNarrowing_250": {
+      "text": "Chaussée rétrécie, à environ deux cent cinquante mètres.",
+      "seconds": 2.978396,
+      "sha256": "d4b50502c6e7c0dbe0d1a87aac5df1e92f5292601ebda5d5aca821105c288ffa"
+    },
+    "roadNarrowing_300": {
+      "text": "Chaussée rétrécie, à environ trois cents mètres.",
+      "seconds": 2.336167,
+      "sha256": "7f4e3b35afb925aafb78ad7d3211fea1b9812baac01ae9152315b1879973c978"
+    },
+    "roadNarrowing_400": {
+      "text": "Chaussée rétrécie, à environ quatre cents mètres.",
+      "seconds": 2.339979,
+      "sha256": "f7912a824e388c9b898fbf30b4d9bce595636e40f8f31a9178685bebae4f090c"
+    },
+    "roadNarrowing_500": {
+      "text": "Chaussée rétrécie, à environ cinq cents mètres.",
+      "seconds": 2.357167,
+      "sha256": "db686768d3ae212aaf41032dc2f3c03b8f32506ea3fff427d29cf7e8dcb72064"
+    },
+    "roadNarrowing_600": {
+      "text": "Chaussée rétrécie, à environ six cents mètres.",
+      "seconds": 2.320063,
+      "sha256": "cfcfb29277aa99a166dc8d3c4af4d0496231e945086333da26e4ac6dd3588f04"
+    },
+    "roadNarrowing_750": {
+      "text": "Chaussée rétrécie, à environ sept cent cinquante mètres.",
+      "seconds": 2.740833,
+      "sha256": "3ed6839fe8603afb151d253f6529e77cbc5bbfd05c565df8e08030a3adee1f47"
+    },
+    "roadNarrowing_1000": {
+      "text": "Chaussée rétrécie, à environ un kilomètre.",
+      "seconds": 2.316896,
+      "sha256": "e3b29a4ca47d11f0b9504af43782c61f2dd0c54d551d2d0a6eedb20c4b28f6ad"
+    },
+    "roadNarrowing_1250": {
+      "text": "Chaussée rétrécie, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.5065,
+      "sha256": "906943ef6de30723e726064d5cf098a408791ab4353c450acc730038b83343ab"
+    },
+    "roadNarrowing_1500": {
+      "text": "Chaussée rétrécie, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.1065,
+      "sha256": "d34aec1c11983c15641a64f4fcd53687a7d4487ecaf74098ff8d8863e2bef99e"
+    },
+    "roadNarrowing_2000": {
+      "text": "Chaussée rétrécie, à environ deux kilomètres.",
+      "seconds": 2.340104,
+      "sha256": "f9d98b01a64b5faa1bd3f67c953385a733f3bb79db37f4d801b86a3fcaf6b061"
+    },
+    "roadNarrowing_2500": {
+      "text": "Chaussée rétrécie, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.206521,
+      "sha256": "a21b904d0a5307e48669ab04dfa5835381e5c1c90c6abf8a8db97a69158ca007"
+    },
+    "roadNarrowing_3000": {
+      "text": "Chaussée rétrécie, à environ trois kilomètres.",
+      "seconds": 2.537479,
+      "sha256": "9a8dfb4b9a575f403c31ba4bb8e4b8f79d4e58735254c1246453638c1184eef8"
+    },
+    "steepDescent_30": {
+      "text": "Forte descente, à environ trente mètres.",
+      "seconds": 2.607146,
+      "sha256": "ef7f5b10594145ed1eee3c94df11c8b64990afdb970d6a46ac58b6ccba60f624"
+    },
+    "steepDescent_50": {
+      "text": "Forte descente, à environ cinquante mètres.",
+      "seconds": 2.630354,
+      "sha256": "a1048c82c0339d3a3b2a0fb308b2b715bc33a17955180ca024b2d250a47548ec"
+    },
+    "steepDescent_75": {
+      "text": "Forte descente, à environ soixante-quinze mètres.",
+      "seconds": 2.781292,
+      "sha256": "a06eb50380c4782b22aac43beb92e1d876ffc23cebb98047a034b3a431e38c1d"
+    },
+    "steepDescent_100": {
+      "text": "Forte descente, à environ cent mètres.",
+      "seconds": 2.363333,
+      "sha256": "167e458b1c52f243fab90005a93e15acbfa12c57e19165a450b858c11f59b18f"
+    },
+    "steepDescent_150": {
+      "text": "Forte descente, à environ cent cinquante mètres.",
+      "seconds": 2.676792,
+      "sha256": "1f411d10372b5043595d9279c8a90ffcd4250c69b66d2ce9e042b5f6b435523e"
+    },
+    "steepDescent_200": {
+      "text": "Forte descente, à environ deux cents mètres.",
+      "seconds": 2.700021,
+      "sha256": "0b312086739e7941fd79eafa11c6b4fb001b88e40db7f88a7e9a53d64aa19408"
+    },
+    "steepDescent_250": {
+      "text": "Forte descente, à environ deux cent cinquante mètres.",
+      "seconds": 2.874167,
+      "sha256": "ade7583667ad15d7dccc19f6c65651ab1f1bfcb1bfd705299980ad4674116adb"
+    },
+    "steepDescent_300": {
+      "text": "Forte descente, à environ trois cents mètres.",
+      "seconds": 2.688417,
+      "sha256": "47afd49309af99c808eb0b651d8dd488a5c3cb9d92b94fee363f3d175e1772bf"
+    },
+    "steepDescent_400": {
+      "text": "Forte descente, à environ quatre cents mètres.",
+      "seconds": 2.676792,
+      "sha256": "b9f987f50f8535112ec5688c1b2fb97263dfcf9577e3eaf4a70f31208e6e2bec"
+    },
+    "steepDescent_500": {
+      "text": "Forte descente, à environ cinq cents mètres.",
+      "seconds": 2.700021,
+      "sha256": "53ec1ddd644a2b61693200865daa041cb0585805e1050cfea063750f4da54127"
+    },
+    "steepDescent_600": {
+      "text": "Forte descente, à environ six cents mètres.",
+      "seconds": 2.61875,
+      "sha256": "092c6bfb650747bba19c5a4ffb45258a9beb7f7b9cfabe74ebccc9e71cb81682"
+    },
+    "steepDescent_750": {
+      "text": "Forte descente, à environ sept cent cinquante mètres.",
+      "seconds": 3.1065,
+      "sha256": "6e947cd4a60120aa8caae8f17ae77b025cee52bfb5ded905325f09d33c6c5dc8"
+    },
+    "steepDescent_1000": {
+      "text": "Forte descente, à environ un kilomètre.",
+      "seconds": 2.409771,
+      "sha256": "a5abe244d5d11c3d14c7178be6bb594b4d1c6576e5f1a4387cc3f5a4d1df9154"
+    },
+    "steepDescent_1250": {
+      "text": "Forte descente, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.6065,
+      "sha256": "f47784c5a6ce6c9ea8484fda514c26bc8d01a4398825357e2491156ff6c5f7cc"
+    },
+    "steepDescent_1500": {
+      "text": "Forte descente, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.3065,
+      "sha256": "e6815f4423f1414741425265b80ea0a05c2de2479aa6cd03d70f696c758419d5"
+    },
+    "steepDescent_2000": {
+      "text": "Forte descente, à environ deux kilomètres.",
+      "seconds": 2.377979,
+      "sha256": "12787ed0ef57f98b5f91fee2a45dbe40fdafa76be6600fd3b34d80353f88a748"
+    },
+    "steepDescent_2500": {
+      "text": "Forte descente, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.506521,
+      "sha256": "5b3734407819b767fdee310f0e5ea608f0bf7f84a5e6f1629e23902ba511ff2a"
+    },
+    "steepDescent_3000": {
+      "text": "Forte descente, à environ trois kilomètres.",
+      "seconds": 2.676792,
+      "sha256": "2bdc893acfbbba443a77c99a0da305e4b8137704698ab6073a0f25aa5684fdcb"
+    },
+    "roadWorks_30": {
+      "text": "Travaux, à environ trente mètres.",
+      "seconds": 1.945375,
+      "sha256": "27553b97fba192ace1981d3c9b3d3b6246afcb2e556ef40b995c95f011a8ebf9"
+    },
+    "roadWorks_50": {
+      "text": "Travaux, à environ cinquante mètres.",
+      "seconds": 2.200792,
+      "sha256": "6a4f313b965213a602e547f8290c8a19f98029ae8e31f7858db761a2111b92a9"
+    },
+    "roadWorks_75": {
+      "text": "Travaux, à environ soixante-quinze mètres.",
+      "seconds": 2.012042,
+      "sha256": "b75ddd0378642ab5483fbfa40f3407801ea1fe9ac7aff2632d580c628a31bd8a"
+    },
+    "roadWorks_100": {
+      "text": "Travaux, à environ cent mètres.",
+      "seconds": 1.697563,
+      "sha256": "f07a519b084632915aea43ffcfb40d2572c5ec7da2e0f80b4022101e19792dea"
+    },
+    "roadWorks_150": {
+      "text": "Travaux, à environ cent cinquante mètres.",
+      "seconds": 2.157833,
+      "sha256": "be85e796b0f4299a1286acb372093207f66e7ab4d23a9011d2c855d7abfa9a11"
+    },
+    "roadWorks_200": {
+      "text": "Travaux, à environ deux cents mètres.",
+      "seconds": 1.968583,
+      "sha256": "8cd5cddac70f9c0f51afc432ae32160811ee7c165a8e90af3e0122c8cb6ce338"
+    },
+    "roadWorks_250": {
+      "text": "Travaux, à environ deux cent cinquante mètres.",
+      "seconds": 2.245146,
+      "sha256": "c6747e4db15ab3033b108708c3b25035821aa47938c3bfd832912c29e12c8f13"
+    },
+    "roadWorks_300": {
+      "text": "Travaux, à environ trois cents mètres.",
+      "seconds": 2.017208,
+      "sha256": "41fbad35142a8fbcd0023940eb74f49457247e25e2c83fccb92a51b1225a2558"
+    },
+    "roadWorks_400": {
+      "text": "Travaux, à environ quatre cents mètres.",
+      "seconds": 2.016938,
+      "sha256": "00d7c581277c36681fae5ab8f528dcf7bea93722a3482332264e7d0c5eb068b0"
+    },
+    "roadWorks_500": {
+      "text": "Travaux, à environ cinq cents mètres.",
+      "seconds": 2.038604,
+      "sha256": "5aa0fea4bfe581fccd936dba51b02da05c3f744b31d550e5392e16ee6ceed540"
+    },
+    "roadWorks_600": {
+      "text": "Travaux, à environ six cents mètres.",
+      "seconds": 1.825271,
+      "sha256": "cee2d3c0e1a3da53c00668029a403196c3f42c2f19881375a105cb0ca602bc5d"
+    },
+    "roadWorks_750": {
+      "text": "Travaux, à environ sept cent cinquante mètres.",
+      "seconds": 2.212896,
+      "sha256": "1de5d1f0036e76505e30199a553d29d4c91ef94cecdd50cf63ec3ce06d824262"
+    },
+    "roadWorks_1000": {
+      "text": "Travaux, à environ un kilomètre.",
+      "seconds": 1.864104,
+      "sha256": "309e7ec3ff37314aec65012fe36679c000b6e6cc18f2379d726077f8fe506252"
+    },
+    "roadWorks_1250": {
+      "text": "Travaux, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.1065,
+      "sha256": "a8c1f5e9943c405bbc92ab1f2ccb938e39f840ef96145320d2bb56559e3c73e5"
+    },
+    "roadWorks_1500": {
+      "text": "Travaux, à environ un kilomètre cinq cents mètres.",
+      "seconds": 2.428646,
+      "sha256": "4490494854a51eb0f57468817fe2eb5a0ed250cc853b56e5152bff6f2d4b192c"
+    },
+    "roadWorks_2000": {
+      "text": "Travaux, à environ deux kilomètres.",
+      "seconds": 1.866188,
+      "sha256": "f53c7660c7c0d8998f63564bcfd3aaf01f347ca31aec3bb9f45f4ed5b36a7ccf"
+    },
+    "roadWorks_2500": {
+      "text": "Travaux, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 2.704563,
+      "sha256": "9b04a50fec4c8e47ef10bdcd1bc8b2673a0234daee3a0600387299e848241909"
+    },
+    "roadWorks_3000": {
+      "text": "Travaux, à environ trois kilomètres.",
+      "seconds": 2.14275,
+      "sha256": "0724b6831155717d989103e5376ee56ee585f42857f3859938eba74c21361065"
+    },
+    "trafficJam_30": {
+      "text": "Ralentissement, à environ trente mètres.",
+      "seconds": 2.247417,
+      "sha256": "a285e83fb4622aed0b33270030fc345890cfca7c3a885a3ae2f3e763881e14a2"
+    },
+    "trafficJam_50": {
+      "text": "Ralentissement, à environ cinquante mètres.",
+      "seconds": 2.333438,
+      "sha256": "474d0d0893cf6303c6bcc17205e1a9a42413f0266cbf830ef10f74bdcb63bc5a"
+    },
+    "trafficJam_75": {
+      "text": "Ralentissement, à environ soixante-quinze mètres.",
+      "seconds": 2.458667,
+      "sha256": "b5899544c3d7925fa2d26b99d5f0fc3d0b6fff2aab5e1cbaa2641767e2e57989"
+    },
+    "trafficJam_100": {
+      "text": "Ralentissement, à environ cent mètres.",
+      "seconds": 2.189188,
+      "sha256": "156b7ee42ba3a04ee1858383ca8d225c5570a2974de5ff596e0548c72e2da28b"
+    },
+    "trafficJam_150": {
+      "text": "Ralentissement, à environ cent cinquante mètres.",
+      "seconds": 2.641979,
+      "sha256": "e559003ae2367bdb897396355a5f9f5c37744819af4f78fb580748b570611e70"
+    },
+    "trafficJam_200": {
+      "text": "Ralentissement, à environ deux cents mètres.",
+      "seconds": 2.3285,
+      "sha256": "a859e43538fd316ab9402a2c2bfba9c8cff6f08bb97eb948b1e4f9ccbd065b27"
+    },
+    "trafficJam_250": {
+      "text": "Ralentissement, à environ deux cent cinquante mètres.",
+      "seconds": 2.6505,
+      "sha256": "3d84fec6857ac3b9d88164d283500053ea0c6513ef209fc003c388a73841df2b"
+    },
+    "trafficJam_300": {
+      "text": "Ralentissement, à environ trois cents mètres.",
+      "seconds": 2.469,
+      "sha256": "de30fd09a99dcae91a1284e63a83bb34ecb524987d6693b6cdf3a07a8d53cd42"
+    },
+    "trafficJam_400": {
+      "text": "Ralentissement, à environ quatre cents mètres.",
+      "seconds": 2.583917,
+      "sha256": "32706524dafa4ebae4d15650808d53b7094cfb56faa74e2fd387714e758199da"
+    },
+    "trafficJam_500": {
+      "text": "Ralentissement, à environ cinq cents mètres.",
+      "seconds": 2.421375,
+      "sha256": "d8d5518e6397afa8b1e66b6ffc2f1ae9670ffb662d4372524fd5c3a91d650363"
+    },
+    "trafficJam_600": {
+      "text": "Ralentissement, à environ six cents mètres.",
+      "seconds": 2.324229,
+      "sha256": "ab91d591b29a6d07cf9dce3563162bf6a7ccb8d114d0cd19a82a91a6e66128d2"
+    },
+    "trafficJam_750": {
+      "text": "Ralentissement, à environ sept cent cinquante mètres.",
+      "seconds": 2.8315,
+      "sha256": "ced97d49a32c3409ba6ced46a1f5b1f1d28e0add1bfe1fd2034cd49169d4d92e"
+    },
+    "trafficJam_1000": {
+      "text": "Ralentissement, à environ un kilomètre.",
+      "seconds": 2.229958,
+      "sha256": "361e5f23de7cb564d62c1a67d08d164ca1d5d15982cca010f91084317bc833d6"
+    },
+    "trafficJam_1250": {
+      "text": "Ralentissement, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.506521,
+      "sha256": "350b58a12ffd73cf28a5615d8c97e102c1a6b8321c4f3d4268cb95e4950209ce"
+    },
+    "trafficJam_1500": {
+      "text": "Ralentissement, à environ un kilomètre cinq cents mètres.",
+      "seconds": 2.937125,
+      "sha256": "50ef8d5446f19d8ff2defc32d885c6e47a3871720c20c0b9a9e493f3b99fdcfc"
+    },
+    "trafficJam_2000": {
+      "text": "Ralentissement, à environ deux kilomètres.",
+      "seconds": 2.479438,
+      "sha256": "adbbde5d36bd4d9e55e082b83d8bddec9c336cb0171ac3334d583d1e4d908ae9"
+    },
+    "trafficJam_2500": {
+      "text": "Ralentissement, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 2.931771,
+      "sha256": "656502e39b444a28ff2e9b559fd2e989c84b585003c635dbbe623f2dac41cbf7"
+    },
+    "trafficJam_3000": {
+      "text": "Ralentissement, à environ trois kilomètres.",
+      "seconds": 2.441604,
+      "sha256": "8e08b321e414c613c97f49f7883820c084c905ca1243bb0652f0c99f7b71c721"
+    },
+    "other_30": {
+      "text": "Lieu enregistré, à environ trente mètres.",
+      "seconds": 2.288813,
+      "sha256": "83f6bc3f7caa087495c26ec65a374156cf352ad0f9037aeed6034af00c410af0"
+    },
+    "other_50": {
+      "text": "Lieu enregistré, à environ cinquante mètres.",
+      "seconds": 2.51425,
+      "sha256": "6469bf025f5766885b8bec4dc4968798eedd832e487f0c3808e007d2c1c999ef"
+    },
+    "other_75": {
+      "text": "Lieu enregistré, à environ soixante-quinze mètres.",
+      "seconds": 2.690354,
+      "sha256": "12afee2daa78c738502155c9ad8ca8784213f74fc8f4880a60a86d8a92138038"
+    },
+    "other_100": {
+      "text": "Lieu enregistré, à environ cent mètres.",
+      "seconds": 2.316896,
+      "sha256": "86e78408f19f0b981d1057d1b8888c7fad397bbb3211ffc2ef15f55e89e9b1e2"
+    },
+    "other_150": {
+      "text": "Lieu enregistré, à environ cent cinquante mètres.",
+      "seconds": 2.769688,
+      "sha256": "b9bc910bed23384c5ba560196ca3c271eceb2c226828aeae9d6cf112bfd8b371"
+    },
+    "other_200": {
+      "text": "Lieu enregistré, à environ deux cents mètres.",
+      "seconds": 2.437792,
+      "sha256": "c41e92629e80a26ee70e8cc2eacaacf7d5f26aaace66b787702920d658bb4669"
+    },
+    "other_250": {
+      "text": "Lieu enregistré, à environ deux cent cinquante mètres.",
+      "seconds": 2.706188,
+      "sha256": "3b28607084ff66305c452b5d666539521538bbb4b3e6cfa2db6db8fb3d486617"
+    },
+    "other_300": {
+      "text": "Lieu enregistré, à environ trois cents mètres.",
+      "seconds": 2.390271,
+      "sha256": "9e0256d05097943e08cf24a972f3629a673e2c3abd3ef8b89b0767bc3013781b"
+    },
+    "other_400": {
+      "text": "Lieu enregistré, à environ quatre cents mètres.",
+      "seconds": 2.746458,
+      "sha256": "810e723506eda7eaaf37ad91a02a100bf16540ac491399d529ce0268f51f2172"
+    },
+    "other_500": {
+      "text": "Lieu enregistré, à environ cinq cents mètres.",
+      "seconds": 2.545104,
+      "sha256": "0d119bdd83d905754c19a22e2e281063f1c1c92dfc8289e95ca6a36a16ad48a3"
+    },
+    "other_600": {
+      "text": "Lieu enregistré, à environ six cents mètres.",
+      "seconds": 2.537479,
+      "sha256": "f45d386079a55abd915a88d6774aba0099348584e76dfee8bbcff8eda184d60a"
+    },
+    "other_750": {
+      "text": "Lieu enregistré, à environ sept cent cinquante mètres.",
+      "seconds": 2.962292,
+      "sha256": "0cd23e8a77207ddfdb5f99dd558f33a20a42b184175319b2ea739f4c6b71b25a"
+    },
+    "other_1000": {
+      "text": "Lieu enregistré, à environ un kilomètre.",
+      "seconds": 2.51425,
+      "sha256": "a237b9aa94d6d064098faea23e37a3fc4e8f061ee5ba7cad215ba9f8e2bc340b"
+    },
+    "other_1250": {
+      "text": "Lieu enregistré, à environ un kilomètre deux cent cinquante mètres.",
+      "seconds": 3.7065,
+      "sha256": "94903fc7f55805d64d2c33e8e9e1b880cdca8631e2f9489254714f188a1ba207"
+    },
+    "other_1500": {
+      "text": "Lieu enregistré, à environ un kilomètre cinq cents mètres.",
+      "seconds": 3.2065,
+      "sha256": "3a5bb614165ea978affeabeb9e0534e412ce27d94f33e8f4fe87c36739ee25a9"
+    },
+    "other_2000": {
+      "text": "Lieu enregistré, à environ deux kilomètres.",
+      "seconds": 2.525875,
+      "sha256": "7dc92616665ad8ac5114d11e2c3681678514b334fe9912cf04c0cdcb5c998e32"
+    },
+    "other_2500": {
+      "text": "Lieu enregistré, à environ deux kilomètres cinq cents mètres.",
+      "seconds": 3.2065,
+      "sha256": "6bf176db8c255d0d2c6dd780c45be9abd6684345ead2bb362bd9f25b8cb1cfb7"
+    },
+    "other_3000": {
+      "text": "Lieu enregistré, à environ trois kilomètres.",
+      "seconds": 2.704958,
+      "sha256": "f95506af4c52884dc2df34cc612b95dec485ef70824ccb2c25d07e962d91596d"
+    },
+    "fixedCamera_near": {
+      "text": "Radar fixe à proximité.",
+      "seconds": 1.643521,
+      "sha256": "0f6ddbfded0cb7b8b8ca4bbc197b2d0aabdedf1b533b8270aab79f2d0ef4d49e"
+    },
+    "redLightCamera_near": {
+      "text": "Radar de feu rouge à proximité.",
+      "seconds": 2.015042,
+      "sha256": "111703b2e31fde776f3a75abe35127a64c35f989a41ea32174488a95383279ef"
+    },
+    "averageSpeedCamera_near": {
+      "text": "Radar de tronçon à proximité.",
+      "seconds": 1.817667,
+      "sha256": "c264fe9f9be44aec546f1bf81324d34fa397b45facf9e18b272fa82cc6da4444"
+    },
+    "levelCrossing_near": {
+      "text": "Passage à niveau à proximité.",
+      "seconds": 1.701563,
+      "sha256": "03a9ea5e37b90d1b804fb474d9464662581e72dbdece23b6dddaced13908263c"
+    },
+    "levelCrossingLowClearance_near": {
+      "text": "Passage à niveau difficile à proximité.",
+      "seconds": 2.107917,
+      "sha256": "5f3461a46a0c799ac9a44efeee8c04751d736f34e12cc84e270bd9711fba40db"
+    },
+    "highSpeedBump_near": {
+      "text": "Ralentisseur à proximité.",
+      "seconds": 1.701563,
+      "sha256": "819d912260e43002b9aec017a00ca32b545db20ae7f73f9928c602f8469fceb6"
+    },
+    "dangerZone_near": {
+      "text": "Zone de vigilance à proximité.",
+      "seconds": 1.864104,
+      "sha256": "11dd7f8fb2f388b1c8da208013697047496cacf308abbf7925c8202cdea75128"
+    },
+    "sharpTurn_near": {
+      "text": "Virage serré à proximité.",
+      "seconds": 1.864104,
+      "sha256": "f06da9ccc65632272d58a5874daf85e5c5a4618ecf2834d7648b5e61536f4953"
+    },
+    "rumbleStrip_near": {
+      "text": "Bandes rugueuses à proximité.",
+      "seconds": 1.631896,
+      "sha256": "b5e1aac480ae7cddf176fdb40c0858abaabe23e6fef3b02fc587a6c33e761e48"
+    },
+    "roadDip_near": {
+      "text": "Creux de chaussée à proximité.",
+      "seconds": 1.597063,
+      "sha256": "06507691cf4d9361a20acd5b421135c9a4a39ba53a4841320636b6c05f966a14"
+    },
+    "roadNarrowing_near": {
+      "text": "Chaussée rétrécie à proximité.",
+      "seconds": 2.059833,
+      "sha256": "436e638eb1f1e10876f6bca0d44334e1be2a8298e0d561a0d4f7be10a9fce92d"
+    },
+    "steepDescent_near": {
+      "text": "Forte descente à proximité.",
+      "seconds": 1.817667,
+      "sha256": "fdeb3f79010be64434b7806ca54a1e899c85d1a5bf66cccfa43091a1ac722448"
+    },
+    "roadWorks_near": {
+      "text": "Travaux à proximité.",
+      "seconds": 1.260375,
+      "sha256": "a8d1d9b40f15af4b4fd627e457352b2482480b24da97a328e0c4ad074358a823"
+    },
+    "trafficJam_near": {
+      "text": "Ralentissement à proximité.",
+      "seconds": 1.689958,
+      "sha256": "93d04915276af95d8857fb02b8020703fa2f73d5f16b207a7962c21fdf6767f1"
+    },
+    "other_near": {
+      "text": "Lieu enregistré à proximité.",
+      "seconds": 1.840875,
+      "sha256": "51cd1e1208ea5dbcf6c21dfb777266f6f884a1bb1578ed106f16dbc6eea31209"
+    },
+    "speed_warning": {
+      "text": "Vérifiez votre vitesse.",
+      "seconds": 1.399708,
+      "sha256": "6cf1b4ab41c3cb8ae3203e95f49b4a0962b6b682d9a47f8922edbec942023206"
+    },
+    "position_lost": {
+      "text": "Position indisponible. Alertes suspendues.",
+      "seconds": 3.106521,
+      "sha256": "4cc08020b749407c503c521a995fe26d55659d61c8b450971ef400eb95ebd833"
+    }
+  }
+}

@@ -1,0 +1,68 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Sensitive configuration files
+android/key.properties
+android/*.jks
+android/*.keystore
+android/app/google-services.json
+android/app/agconnect-services.json
+ios/Runner/GoogleService-Info.plist
+.env
+*.key
+api_keys.txt
+secrets/
+
+# Editor and agent tooling. Installed per-developer by `npx impeccable install`;
+# the hooks reference absolute paths that only exist on the machine that ran it,
+# so shipping them to anyone cloning the app would only break for them.
+# PRODUCT.md, DESIGN.md and .impeccable/design.json are deliberately NOT here:
+# those are project documentation and belong with the code.
+.claude/
+.github/agents/
+.github/hooks/
+.github/skills/
+.impeccable/config.local.json
+.gl_token

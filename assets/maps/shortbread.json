@@ -1,0 +1,174 @@
+{
+  "version": 8,
+  "name": "RedAlert Shortbread day",
+  "metadata": {
+    "maputnik:renderer": "mlgljs"
+  },
+  "sources": {
+    "shortbread": {
+      "type": "vector"
+    }
+  },
+  "layers": [
+    {
+      "id": "bg",
+      "type": "background",
+      "paint": {
+        "background-color": "#F5F3EC"
+      }
+    },
+    {
+      "id": "ocean",
+      "type": "fill",
+      "source": "shortbread",
+      "source-layer": "ocean",
+      "paint": {
+        "fill-color": "#78B5D0"
+      }
+    },
+    {
+      "id": "water_polygons",
+      "type": "fill",
+      "source": "shortbread",
+      "source-layer": "water_polygons",
+      "paint": {
+        "fill-color": "#78B5D0"
+      }
+    },
+    {
+      "id": "buildings",
+      "type": "fill",
+      "source": "shortbread",
+      "source-layer": "buildings",
+      "paint": {
+        "fill-color": "#D4C8B8",
+        "fill-outline-color": "#B3A594"
+      },
+      "minzoom": 13
+    },
+    {
+      "id": "boundaries",
+      "type": "line",
+      "source": "shortbread",
+      "source-layer": "boundaries",
+      "paint": {
+        "line-color": "#79517D"
+      }
+    },
+    {
+      "id": "streets-casing",
+      "type": "line",
+      "source": "shortbread",
+      "source-layer": "streets",
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#FFFFFF",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          1.5,
+          12,
+          4.0,
+          16,
+          9.0
+        ]
+      }
+    },
+    {
+      "id": "streets",
+      "type": "line",
+      "source": "shortbread",
+      "source-layer": "streets",
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "kind"
+          ],
+          "motorway",
+          "#A53D32",
+          [
+            "trunk",
+            "primary",
+            "secondary"
+          ],
+          "#93600D",
+          "#525F69"
+        ],
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          0.7,
+          12,
+          2.2,
+          16,
+          6.0
+        ]
+      }
+    },
+    {
+      "id": "places",
+      "type": "symbol",
+      "source": "shortbread",
+      "source-layer": "place_labels",
+      "layout": {
+        "text-field": [
+          "get",
+          "name"
+        ],
+        "text-font": [
+          "Open Sans Semibold"
+        ],
+        "text-size": 17
+      },
+      "paint": {
+        "text-halo-width": 1.4,
+        "text-halo-color": "#FFFFFF",
+        "text-color": "#17242E"
+      }
+    },
+    {
+      "id": "street-names",
+      "type": "symbol",
+      "source": "shortbread",
+      "source-layer": "street_labels",
+      "minzoom": 13,
+      "layout": {
+        "symbol-placement": "line",
+        "text-field": [
+          "get",
+          "name"
+        ],
+        "text-size": 12
+      },
+      "paint": {
+        "text-color": "#17242E",
+        "text-halo-color": "#FFFFFF",
+        "text-halo-width": 1.4
+      }
+    }
+  ],
+  "id": "shortbread-demo-maplibre"
+}

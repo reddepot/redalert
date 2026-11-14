@@ -1,0 +1,78 @@
+# Traduction française de LocReminder.
+#
+# Les noms à gauche ne changent jamais : ce sont les clés que le code cherche.
+# Les éléments entre accolades comme {place} sont remplis par l'application ;
+# garde-les, mais tu peux les déplacer dans la phrase.
+#
+# Ne traduis pas : LocReminder, OpenStreetMap, OpenTopoMap, ni les noms de
+# fabricants et de surcouches (Xiaomi, MIUI, HyperOS, Samsung, OnePlus) : ils
+# apparaissent en anglais sur le téléphone lui-même.
+
+meta:
+  name: Français
+  fastlane: fr-FR
+
+alarm:
+  alarm_arrived_default: Tu es arrivé !
+  alarm_arrived_message: "Tu approches de\n{place}"
+  alarm_stop_button: Arrêter l’alarme
+  alarm_default_destination: ta destination
+
+  alarm_label_joiner: " et "
+
+  alarm_notification_title: Tu approches de {place}
+  alarm_notification_body: Touche pour ouvrir l’alarme, ou arrête-la ci-dessous.
+
+  channel_alarm_name: Alertes de lieu
+  channel_alarm_description: Te prévient quand tu arrives près d’un lieu enregistré
+  channel_watch_name: Surveillance des lieux
+  channel_watch_description: S’affiche pendant que RedAlert surveille tes lieux
+
+  notify_arrived_body: Touche pour ouvrir ton alarme.
+  notify_stopped_title: Ton alarme ne surveille plus
+  notify_stopped_body: Touche pour rouvrir RedAlert et la réarmer.
+  notify_location_off_title: "Localisation coupée — l’alarme ne peut pas sonner"
+  notify_location_off_body: Touche pour activer la localisation.
+
+  watch_title_active: Surveillance de tes lieux
+  watch_title_inactive: Surveillance arrêtée
+
+  watch_title_dormant: Rien à surveiller aujourd’hui
+  watch_dormant_body: Tes alarmes sont prévues d’autres jours. La surveillance reprend d’elle-même.
+
+  watch_location_off: "Active la localisation — sans elle, l’alarme ne peut pas sonner"
+  watch_waiting_fix: "Économie de batterie · position en attente"
+  watch_stale_fix: "Position à actualiser · étapes de passage suspendues"
+  watch_distance_km: "{distance} km de {place}"
+  watch_distance_m: "{distance} m de {place}"
+  watch_distance_mi: "{distance} mi de {place}"
+  watch_distance_ft: "{distance} ft de {place}"
+  watch_armed:
+    one: "{count} alerte armée"
+    other: "{count} alertes armées"
+
+  test_alarm_label: Alarme de test
+  custom_sound_name: Son personnalisé
+
+store:
+  title: RedAlert
+  shortDescription: Te rappelle au bon endroit
+
+app:
+  appTitle: RedAlert
+  appTagline: Alerte avant le radar
+
+  drawerReliability: Fiabilité des alertes
+  drawerReliabilitySubtitle: S’assurer qu’elle sonnera
+  drawerSettings: Réglages
+  drawerAbout: À propos
+
+  mapAttribution: Données cartographiques © contributeurs OpenStreetMap
+  mapStyleTitle: Style de carte
+  mapStyleStandard: Standard
+  mapStyleHumanitarian: Humanitaire
+  mapStyleHumanitarianDescription: Contraste plus fort, libellés plus lisibles
+  mapStyleTopographic: Topographique
+  mapStyleTopographicDescription: Courbes de niveau et relief
+  mapStyleCycle: Vélo
+  mapStyleCycleDescription: Sentiers, bandes et itinéraires cyclables

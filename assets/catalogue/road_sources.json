@@ -1,0 +1,662 @@
+{
+  "format": "redalert-road-catalogues",
+  "version": 1,
+  "source": {
+    "name": "SNCF Réseau",
+    "url": "https://ressources.data.sncf.com/explore/dataset/liste-des-passages-a-niveau/",
+    "snapshot_at": "2026-02-18T16:29:18+00:00"
+  },
+  "departments": [
+    {
+      "code": "01",
+      "count": 280,
+      "low_clearance": 33,
+      "asset": "assets/catalogue/railway/01.json",
+      "sha256": "7c9880667e410ec0f95b79e7208686816d1615e4cd871620de2c690b22853ded"
+    },
+    {
+      "code": "02",
+      "count": 236,
+      "low_clearance": 33,
+      "asset": "assets/catalogue/railway/02.json",
+      "sha256": "1742befd0df9f1af9827cdf60f9e22580e52d6728c64161b5f733dc499505044"
+    },
+    {
+      "code": "03",
+      "count": 175,
+      "low_clearance": 30,
+      "asset": "assets/catalogue/railway/03.json",
+      "sha256": "eef9eb2afe2ac728c031fff13fb5c27e7e97f214468c9b0fe72c9c2931e6a3ce"
+    },
+    {
+      "code": "04",
+      "count": 39,
+      "low_clearance": 4,
+      "asset": "assets/catalogue/railway/04.json",
+      "sha256": "475d1784f7a1988634c439aeef2bea61875468d292d693db825528afce06ba4b"
+    },
+    {
+      "code": "05",
+      "count": 70,
+      "low_clearance": 12,
+      "asset": "assets/catalogue/railway/05.json",
+      "sha256": "2890239b9da7bcf68d2817370738ad4249e33963e5dd0bf4ba6ebdb80e975670"
+    },
+    {
+      "code": "06",
+      "count": 15,
+      "low_clearance": 2,
+      "asset": "assets/catalogue/railway/06.json",
+      "sha256": "2f576f9f366d4ee7c7134bf8f791c072ba237f0713c8afc23e044a3e455c4651"
+    },
+    {
+      "code": "07",
+      "count": 36,
+      "low_clearance": 2,
+      "asset": "assets/catalogue/railway/07.json",
+      "sha256": "c109b3f5714df5a898c3fe6c4ccc2f7062aaac7052ed1ea45bad51b10d0c92f6"
+    },
+    {
+      "code": "08",
+      "count": 167,
+      "low_clearance": 40,
+      "asset": "assets/catalogue/railway/08.json",
+      "sha256": "bb6b32e583fee25efd43aebc038d1cd817d1d28e8702abe9d5ae9b5ecf6087cb"
+    },
+    {
+      "code": "09",
+      "count": 59,
+      "low_clearance": 7,
+      "asset": "assets/catalogue/railway/09.json",
+      "sha256": "e18388c4622f0f091091cd7e1bd590bd685a51388275eb2634304218a4a94bd9"
+    },
+    {
+      "code": "10",
+      "count": 291,
+      "low_clearance": 4,
+      "asset": "assets/catalogue/railway/10.json",
+      "sha256": "a687381ba0416389dee7458ce91bb65f00c3be77ea7a7f630b5d74c4cc4628b8"
+    },
+    {
+      "code": "11",
+      "count": 112,
+      "low_clearance": 12,
+      "asset": "assets/catalogue/railway/11.json",
+      "sha256": "d0421c298a0317c42304f397b483e94a1307954e8c9ca8ee8551e3e0782a7862"
+    },
+    {
+      "code": "12",
+      "count": 119,
+      "low_clearance": 9,
+      "asset": "assets/catalogue/railway/12.json",
+      "sha256": "fe06f61681ef003a905b62d75da89da2f24caa59174543c2c041d50bb18681ab"
+    },
+    {
+      "code": "13",
+      "count": 76,
+      "low_clearance": 7,
+      "asset": "assets/catalogue/railway/13.json",
+      "sha256": "1f3226b716403baba93913447ea504f6a996111cb959af208bfe465ca9e29147"
+    },
+    {
+      "code": "14",
+      "count": 105,
+      "low_clearance": 21,
+      "asset": "assets/catalogue/railway/14.json",
+      "sha256": "44c15e037d0717ade954c52fd89fbd6d2b99cff31a83fe4b13d4a98e175b93a6"
+    },
+    {
+      "code": "15",
+      "count": 158,
+      "low_clearance": 14,
+      "asset": "assets/catalogue/railway/15.json",
+      "sha256": "c2e3b413a9ef6ef081be09b433cecd972cba6af971bce52cc36d333a39db72bc"
+    },
+    {
+      "code": "16",
+      "count": 100,
+      "low_clearance": 5,
+      "asset": "assets/catalogue/railway/16.json",
+      "sha256": "aef2c5cd80fea5a1936ec82e834985372fe15fb584e16b480e62b44966561001"
+    },
+    {
+      "code": "17",
+      "count": 262,
+      "low_clearance": 43,
+      "asset": "assets/catalogue/railway/17.json",
+      "sha256": "e91b803886a6fd3d2d17f7be1707ebe4e5ed83d7b8fa1a4c210b3ea0fe19e689"
+    },
+    {
+      "code": "18",
+      "count": 125,
+      "low_clearance": 25,
+      "asset": "assets/catalogue/railway/18.json",
+      "sha256": "0e4943c75d5aebc7c5588ca78e48156875e914966fcdd408ba8d9718fc0b85c4"
+    },
+    {
+      "code": "19",
+      "count": 171,
+      "low_clearance": 9,
+      "asset": "assets/catalogue/railway/19.json",
+      "sha256": "10bae7a4013a0e6863cf922c89e3b4b5dcd5abf8d215c10e56e415530b1c8b00"
+    },
+    {
+      "code": "21",
+      "count": 273,
+      "low_clearance": 2,
+      "asset": "assets/catalogue/railway/21.json",
+      "sha256": "209d99fb625058656eb5382670441afb4807af5ee9930acef5482491553e1b30"
+    },
+    {
+      "code": "22",
+      "count": 199,
+      "low_clearance": 16,
+      "asset": "assets/catalogue/railway/22.json",
+      "sha256": "443c87cb3dccad75915c094b1d4651f91726c5d2ad24aa507e0bb749f237f91c"
+    },
+    {
+      "code": "23",
+      "count": 117,
+      "low_clearance": 16,
+      "asset": "assets/catalogue/railway/23.json",
+      "sha256": "34346d4747438004e31333ba91adbdbb1059461a65c558bb9600f855f62f4db2"
+    },
+    {
+      "code": "24",
+      "count": 216,
+      "low_clearance": 9,
+      "asset": "assets/catalogue/railway/24.json",
+      "sha256": "51e90f6a866ce3225bc1af063b8aca8bb28c0a5ec54844ef99212955823f98f8"
+    },
+    {
+      "code": "25",
+      "count": 109,
+      "low_clearance": 10,
+      "asset": "assets/catalogue/railway/25.json",
+      "sha256": "f8c00208f2b8359f500e7d87fba1c619c7c871bea90fea0c8155849f10b08004"
+    },
+    {
+      "code": "26",
+      "count": 83,
+      "low_clearance": 4,
+      "asset": "assets/catalogue/railway/26.json",
+      "sha256": "430c4193ec06b8b28a66384bc8bed350f363a3982706cc6a772f91bdd4ee6495"
+    },
+    {
+      "code": "27",
+      "count": 202,
+      "low_clearance": 21,
+      "asset": "assets/catalogue/railway/27.json",
+      "sha256": "efbe220e382a54034d652be9657c662d853c04f50fbfab5bca8b6513e6310b3f"
+    },
+    {
+      "code": "28",
+      "count": 164,
+      "low_clearance": 16,
+      "asset": "assets/catalogue/railway/28.json",
+      "sha256": "d718cbcbf542e6c19f6f40ea45e90ceaae5740970dcfb1c0af0ee47a5ece2248"
+    },
+    {
+      "code": "29",
+      "count": 114,
+      "low_clearance": 35,
+      "asset": "assets/catalogue/railway/29.json",
+      "sha256": "ae6abaf89d2a2db86eab409b2f60d185a74562406d49b754f61e40d579907aea"
+    },
+    {
+      "code": "30",
+      "count": 119,
+      "low_clearance": 14,
+      "asset": "assets/catalogue/railway/30.json",
+      "sha256": "c750d9784a669b1c10d5afc4f9907f78492be7e655641a33c9ed4c8c5c1bc386"
+    },
+    {
+      "code": "31",
+      "count": 203,
+      "low_clearance": 28,
+      "asset": "assets/catalogue/railway/31.json",
+      "sha256": "45da850633174de5a5c4a8fb9812b32b8f2ccc365d1fefd0622ca58589a10af8"
+    },
+    {
+      "code": "32",
+      "count": 134,
+      "low_clearance": 4,
+      "asset": "assets/catalogue/railway/32.json",
+      "sha256": "ac9692e8d69b392f37df7d8129913a89a13f00df83102304b9324983872cbc2a"
+    },
+    {
+      "code": "33",
+      "count": 276,
+      "low_clearance": 22,
+      "asset": "assets/catalogue/railway/33.json",
+      "sha256": "7c07351d996207c36241bac13597447086fb811b47877478584a062a963748e2"
+    },
+    {
+      "code": "34",
+      "count": 113,
+      "low_clearance": 18,
+      "asset": "assets/catalogue/railway/34.json",
+      "sha256": "a066f55d7e459f286fc8f68f29e9dc0131eb00bf77976ddd9d7da54b86759528"
+    },
+    {
+      "code": "35",
+      "count": 157,
+      "low_clearance": 21,
+      "asset": "assets/catalogue/railway/35.json",
+      "sha256": "baae6761195e896e052ec7527d8e12ed6b66e28803479788fddb7e7d2bdef498"
+    },
+    {
+      "code": "36",
+      "count": 178,
+      "low_clearance": 5,
+      "asset": "assets/catalogue/railway/36.json",
+      "sha256": "278a45b348c1b7f17c7a48553c602951fcc4ffbb0671aa8b4c5e80bcf5b42842"
+    },
+    {
+      "code": "37",
+      "count": 215,
+      "low_clearance": 46,
+      "asset": "assets/catalogue/railway/37.json",
+      "sha256": "2a73b35a30cd76ae9d47f576e337a090b21ed6181b237a670f1f7d5e84b20e58"
+    },
+    {
+      "code": "38",
+      "count": 168,
+      "low_clearance": 29,
+      "asset": "assets/catalogue/railway/38.json",
+      "sha256": "305f2f631631f27ca0dab6d917f8a09a59b1a1d1827d568ce4cf0d3bd2b473b7"
+    },
+    {
+      "code": "39",
+      "count": 110,
+      "low_clearance": 10,
+      "asset": "assets/catalogue/railway/39.json",
+      "sha256": "bedbb43a3491b5cf69e85a141fdfdaec40e6e7200d05671bb60b763dc6c97ec2"
+    },
+    {
+      "code": "40",
+      "count": 178,
+      "low_clearance": 31,
+      "asset": "assets/catalogue/railway/40.json",
+      "sha256": "feba1b3f39ee00baf902e741dd07ba46af91cde9b1252c685777c276020c6c60"
+    },
+    {
+      "code": "41",
+      "count": 208,
+      "low_clearance": 10,
+      "asset": "assets/catalogue/railway/41.json",
+      "sha256": "e9b425f8f9a4b64f6cb78262da7ab28e8eb1f413619fe0ca30a4559518797ca3"
+    },
+    {
+      "code": "42",
+      "count": 171,
+      "low_clearance": 13,
+      "asset": "assets/catalogue/railway/42.json",
+      "sha256": "707d24f90d7f46610fe7271800c695e39f20be978a237155c331ee62a0e85f51"
+    },
+    {
+      "code": "43",
+      "count": 89,
+      "low_clearance": 5,
+      "asset": "assets/catalogue/railway/43.json",
+      "sha256": "09a61b01f4822ca45f1754f6e75178b86934778beae25847733d418d981caa86"
+    },
+    {
+      "code": "44",
+      "count": 302,
+      "low_clearance": 53,
+      "asset": "assets/catalogue/railway/44.json",
+      "sha256": "4195728a20bbb90e8253a312f0fea9c351d5b83c9076294547a366783bee69a0"
+    },
+    {
+      "code": "45",
+      "count": 306,
+      "low_clearance": 4,
+      "asset": "assets/catalogue/railway/45.json",
+      "sha256": "ea6ffd266d2e6d5d2cad5a84465ccaea7cb1b18cf33ad82940d2bba7b2e52ad9"
+    },
+    {
+      "code": "46",
+      "count": 124,
+      "low_clearance": 5,
+      "asset": "assets/catalogue/railway/46.json",
+      "sha256": "4269f46caa0c5b68841da8466bc2e91d799ede150aa5a6efd322b869b22f63a6"
+    },
+    {
+      "code": "47",
+      "count": 161,
+      "low_clearance": 10,
+      "asset": "assets/catalogue/railway/47.json",
+      "sha256": "42a070e17b8dd61803e8f917228542584638b1ce2ffea63d123960199db09e8d"
+    },
+    {
+      "code": "48",
+      "count": 78,
+      "low_clearance": 6,
+      "asset": "assets/catalogue/railway/48.json",
+      "sha256": "599640efd206bea81b78e260fcf457c7b054cf0d180bad671f61a4968cdee327"
+    },
+    {
+      "code": "49",
+      "count": 137,
+      "low_clearance": 29,
+      "asset": "assets/catalogue/railway/49.json",
+      "sha256": "d257131338ba1acb5efda1749a05458ab518b422d804898662477b4b233a2e13"
+    },
+    {
+      "code": "50",
+      "count": 104,
+      "low_clearance": 13,
+      "asset": "assets/catalogue/railway/50.json",
+      "sha256": "99dc4aca85afe05f12065bbc3db3233f5d0cc041df47305ff2b16b09eb59815c"
+    },
+    {
+      "code": "51",
+      "count": 297,
+      "low_clearance": 16,
+      "asset": "assets/catalogue/railway/51.json",
+      "sha256": "c6ecc0e17aa736fa4b8dc49c92c3b140a8e65a49ba53c63217bc9217d20528a4"
+    },
+    {
+      "code": "52",
+      "count": 187,
+      "low_clearance": 39,
+      "asset": "assets/catalogue/railway/52.json",
+      "sha256": "973be99255966b4c885c38deeeb290b4f1985dfe835170b904c488a3b41b211a"
+    },
+    {
+      "code": "53",
+      "count": 83,
+      "low_clearance": 2,
+      "asset": "assets/catalogue/railway/53.json",
+      "sha256": "a96a51ee2b5966674a6ec9b98880d3a9282d19a07c4eae080f8cbcaed26ccd6b"
+    },
+    {
+      "code": "54",
+      "count": 173,
+      "low_clearance": 40,
+      "asset": "assets/catalogue/railway/54.json",
+      "sha256": "60a3b1e35f5807b0fc99e1c1a9dfe9098a1fa61dd743e2e722508eeb3ed18a43"
+    },
+    {
+      "code": "55",
+      "count": 183,
+      "low_clearance": 10,
+      "asset": "assets/catalogue/railway/55.json",
+      "sha256": "bbc049caf4e23774c0753b0858949fefadbcb5de127ea2aaa0000ba2c029119f"
+    },
+    {
+      "code": "56",
+      "count": 100,
+      "low_clearance": 7,
+      "asset": "assets/catalogue/railway/56.json",
+      "sha256": "6027923c2f061d6ece211acd3a29c43f5bad5348cc2a809191349bcdd9410452"
+    },
+    {
+      "code": "57",
+      "count": 170,
+      "low_clearance": 39,
+      "asset": "assets/catalogue/railway/57.json",
+      "sha256": "22dca32ec9a4e552eed4d92eb1824cd1bee10b3917cbdf84ef6503f506bc2312"
+    },
+    {
+      "code": "58",
+      "count": 221,
+      "low_clearance": 9,
+      "asset": "assets/catalogue/railway/58.json",
+      "sha256": "fe29c237c0b8b02072f24b953318c83531d030bcf85de407941716f55c9a7e20"
+    },
+    {
+      "code": "59",
+      "count": 464,
+      "low_clearance": 46,
+      "asset": "assets/catalogue/railway/59.json",
+      "sha256": "abdc702a172ce5dd0a7835238ebdcffb4c63634d670c6c23b10279a5f0760a52"
+    },
+    {
+      "code": "60",
+      "count": 306,
+      "low_clearance": 47,
+      "asset": "assets/catalogue/railway/60.json",
+      "sha256": "2b7f66757fa54bdd5d04321da8198a04c37a04bf34016ab733c572f79ee74d08"
+    },
+    {
+      "code": "61",
+      "count": 212,
+      "low_clearance": 18,
+      "asset": "assets/catalogue/railway/61.json",
+      "sha256": "869b032f8f7bcc680f0954634447c5ceb929c5f32167c21dda2542dbf8854d50"
+    },
+    {
+      "code": "62",
+      "count": 341,
+      "low_clearance": 47,
+      "asset": "assets/catalogue/railway/62.json",
+      "sha256": "330d22ed90fbe4f18988753fce8385f71e86ef5bd61c4d3c4627c167127d6ca3"
+    },
+    {
+      "code": "63",
+      "count": 188,
+      "low_clearance": 22,
+      "asset": "assets/catalogue/railway/63.json",
+      "sha256": "905e5ea1f08393d612eccaa2adcc9e0f8438cd504134233012e358794a715370"
+    },
+    {
+      "code": "64",
+      "count": 174,
+      "low_clearance": 22,
+      "asset": "assets/catalogue/railway/64.json",
+      "sha256": "709d450fd31903323eee2c158d8ef264bfbceb01cdca5ec91fd4af0b95f122dc"
+    },
+    {
+      "code": "65",
+      "count": 121,
+      "low_clearance": 8,
+      "asset": "assets/catalogue/railway/65.json",
+      "sha256": "c6f18ebe69f514c1b933b2eb765d24d36de8993170dfae42049522899e2b716d"
+    },
+    {
+      "code": "66",
+      "count": 147,
+      "low_clearance": 8,
+      "asset": "assets/catalogue/railway/66.json",
+      "sha256": "c506df4e3e66d2c2d5d8d2ebaed130f1fc47fb093d35200ac5a9003cf5776f01"
+    },
+    {
+      "code": "67",
+      "count": 263,
+      "low_clearance": 48,
+      "asset": "assets/catalogue/railway/67.json",
+      "sha256": "a6deaef57de094be38a19e9633846ec0b58552dad1a9db71afe9dc95548eccb3"
+    },
+    {
+      "code": "68",
+      "count": 197,
+      "low_clearance": 15,
+      "asset": "assets/catalogue/railway/68.json",
+      "sha256": "e79bc89355f9298276650bee96c7d3570b1bb05d799e4ce8ebb0472b18a42ee8"
+    },
+    {
+      "code": "69",
+      "count": 115,
+      "low_clearance": 21,
+      "asset": "assets/catalogue/railway/69.json",
+      "sha256": "90ccf50a2443e3b38f9ac7ea2f840d049b5fbe1b8527e90802109ad159c5e39e"
+    },
+    {
+      "code": "70",
+      "count": 124,
+      "low_clearance": 16,
+      "asset": "assets/catalogue/railway/70.json",
+      "sha256": "e8ec10aaaf719ee62559ed787f6da516a4ce5bfaa5b9da1296e5f782628f8f5a"
+    },
+    {
+      "code": "71",
+      "count": 171,
+      "low_clearance": 23,
+      "asset": "assets/catalogue/railway/71.json",
+      "sha256": "de7d6b32747cb4669b6c1a64624e6eefc60d4b612e2cb86a8f4f33f7ff5ad69b"
+    },
+    {
+      "code": "72",
+      "count": 199,
+      "low_clearance": 24,
+      "asset": "assets/catalogue/railway/72.json",
+      "sha256": "d368c032de5e386482c44334dab87cdfce00629e446af589b2e3e61fde2f40e9"
+    },
+    {
+      "code": "73",
+      "count": 120,
+      "low_clearance": 24,
+      "asset": "assets/catalogue/railway/73.json",
+      "sha256": "5a509df35af1476d8cbecc908897ed6600a36fe9dbcf1f4a39bbf5c6963f19e2"
+    },
+    {
+      "code": "74",
+      "count": 159,
+      "low_clearance": 40,
+      "asset": "assets/catalogue/railway/74.json",
+      "sha256": "c6dd7d9e50f71677cac97d71952b1dd5743fec39db9641ec15a9ab5a25d4e455"
+    },
+    {
+      "code": "76",
+      "count": 440,
+      "low_clearance": 29,
+      "asset": "assets/catalogue/railway/76.json",
+      "sha256": "f2732859d4373bfd69aea46ac8091314c827873e137572423d3f11fe57ce08b0"
+    },
+    {
+      "code": "77",
+      "count": 159,
+      "low_clearance": 22,
+      "asset": "assets/catalogue/railway/77.json",
+      "sha256": "24525fc4c18e374266ff8873e8810551b5ba497994c6a4403cf1d9fcb714097e"
+    },
+    {
+      "code": "78",
+      "count": 56,
+      "low_clearance": 10,
+      "asset": "assets/catalogue/railway/78.json",
+      "sha256": "21ca476d1d8418d2c44b4d9f939d1ac669de66ed7f84ed8fb8717ec5f476d617"
+    },
+    {
+      "code": "79",
+      "count": 202,
+      "low_clearance": 23,
+      "asset": "assets/catalogue/railway/79.json",
+      "sha256": "c70bc9bf4e9d94a062c8072afb4457635c01f643d168f899a2875906bbc61109"
+    },
+    {
+      "code": "80",
+      "count": 203,
+      "low_clearance": 30,
+      "asset": "assets/catalogue/railway/80.json",
+      "sha256": "be8f52b1802e1825cc7e2cf30884c299011335a5e37f906490c8b2d89dbca32b"
+    },
+    {
+      "code": "81",
+      "count": 168,
+      "low_clearance": 18,
+      "asset": "assets/catalogue/railway/81.json",
+      "sha256": "a972cbf0fd6a3a8892025cf83d19b6f8e59a638d9779c208e6fbdc97b7bd02d3"
+    },
+    {
+      "code": "82",
+      "count": 78,
+      "low_clearance": 8,
+      "asset": "assets/catalogue/railway/82.json",
+      "sha256": "f577443b79c4c87014929696fcf20e4939e3fbd8160f91c1b60371f6d6141b4e"
+    },
+    {
+      "code": "83",
+      "count": 49,
+      "low_clearance": 8,
+      "asset": "assets/catalogue/railway/83.json",
+      "sha256": "1cba518be247c8558f559393914e843e1bcf412b1ee0a7bc24812865de805d20"
+    },
+    {
+      "code": "84",
+      "count": 46,
+      "low_clearance": 4,
+      "asset": "assets/catalogue/railway/84.json",
+      "sha256": "190da508783f2bc872a83f48a9bf4c33c10f6287501ab1a1995360a57e8ee90a"
+    },
+    {
+      "code": "85",
+      "count": 228,
+      "low_clearance": 30,
+      "asset": "assets/catalogue/railway/85.json",
+      "sha256": "40cdb78c74c8544187ccaefa235c7e45843db8ce69835ce297708f72090ebbc0"
+    },
+    {
+      "code": "86",
+      "count": 197,
+      "low_clearance": 10,
+      "asset": "assets/catalogue/railway/86.json",
+      "sha256": "2c6efab074f57ee4a2e162d76e4b842de6858e9f57ea3ffc234f7ce08cca5f84"
+    },
+    {
+      "code": "87",
+      "count": 134,
+      "low_clearance": 22,
+      "asset": "assets/catalogue/railway/87.json",
+      "sha256": "740ab46d2136f674e9ec817312e4eb646fe6b9258490bd969c762873740477dc"
+    },
+    {
+      "code": "88",
+      "count": 258,
+      "low_clearance": 59,
+      "asset": "assets/catalogue/railway/88.json",
+      "sha256": "3e6df6fbe7094af398b28b28e2cc564054a672811d70f9811dc575ef680557ef"
+    },
+    {
+      "code": "89",
+      "count": 191,
+      "low_clearance": 13,
+      "asset": "assets/catalogue/railway/89.json",
+      "sha256": "8580c5f21ac1cb64959bfbc280fc17d5bf9d5b1e9b6456305ab0ffe11a2d05e8"
+    },
+    {
+      "code": "90",
+      "count": 30,
+      "low_clearance": 2,
+      "asset": "assets/catalogue/railway/90.json",
+      "sha256": "92642eb292e452a26604043110f33538e392dd8c738b08f82788c4541f546a7d"
+    },
+    {
+      "code": "91",
+      "count": 49,
+      "low_clearance": 19,
+      "asset": "assets/catalogue/railway/91.json",
+      "sha256": "c93795eae8c1e0f2d2fc37939190ac6b27cb63da3b3c33aaa71f4052e3ea9545"
+    },
+    {
+      "code": "92",
+      "count": 3,
+      "low_clearance": 0,
+      "asset": "assets/catalogue/railway/92.json",
+      "sha256": "447a4e4dc99b66e0525b64910f66b2a2519dd2e1062a1343be373371af6903c0"
+    },
+    {
+      "code": "93",
+      "count": 4,
+      "low_clearance": 0,
+      "asset": "assets/catalogue/railway/93.json",
+      "sha256": "925898e7dcb783b244b1c3418a96d4b754b63bdf83a57673283d7c9df3040459"
+    },
+    {
+      "code": "94",
+      "count": 4,
+      "low_clearance": 1,
+      "asset": "assets/catalogue/railway/94.json",
+      "sha256": "5a3aa34ef1c24ce41c91c62f05873b732372005ad7219a21cfb6b06daf519881"
+    },
+    {
+      "code": "95",
+      "count": 73,
+      "low_clearance": 18,
+      "asset": "assets/catalogue/railway/95.json",
+      "sha256": "da8ef99e3558d1658354917f15bdb5d951c98966cc9f4411cc65da48cc8c16cc"
+    }
+  ]
+}
